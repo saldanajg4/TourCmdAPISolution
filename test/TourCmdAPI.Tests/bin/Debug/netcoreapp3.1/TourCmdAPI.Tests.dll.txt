@@ -1,1 +1,1 @@
-TourCmdAPI.Tests.UnitTest1.Test1
+TourCmdAPI.Tests.TourCmdAPITests.Test1

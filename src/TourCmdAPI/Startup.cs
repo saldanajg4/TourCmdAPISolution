@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,6 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
 using TourCmdAPI.DbContexts;
+using TourCmdAPI.Entities;
+using TourCmdAPI.IRepos;
+using TourCmdAPI.Repos;
 
 namespace TourCmdAPI
 {
@@ -24,6 +28,7 @@ namespace TourCmdAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+ 
             var builder = new NpgsqlConnectionStringBuilder();
             builder.ConnectionString = Configuration.GetConnectionString("TourConnection");
             builder.Username = Configuration["UserID"];
@@ -33,6 +38,16 @@ namespace TourCmdAPI
             (builder.ConnectionString)
             );
             
+            services.AddScoped<ITourRepository, TourRepository>();
+             // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapping());
+            });
+            
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddControllers();
         }
 
@@ -45,6 +60,41 @@ namespace TourCmdAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            // var config = new MapperConfiguration(cfg =>
+            // {
+            //     cfg.CreateMap<Entities.Tour, Dtos.Tour>();
+            // });
+        
+
+             var config = new MapperConfiguration(config =>
+            {
+                config.CreateMap<Entities.Tour, Dtos.Tour>()
+                    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
+                // config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfits>()
+                //    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
+                config.CreateMap<Entities.Band, Dtos.Band>();
+                config.CreateMap<Entities.Manager, Dtos.Manager>();
+                config.CreateMap<Entities.Show, Dtos.Show>();
+
+                // config.CreateMap<Dtos.TourForCreation, Entities.Tour>();
+                // config.CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
+
+                // config.CreateMap<Entities.Tour, Dtos.TourWithShows>()
+                //    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
+                // config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfitsAndShows>()
+                //     .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
+                // config.CreateMap<Dtos.TourWithShowsForCreation, Entities.Tour>();
+                // config.CreateMap<Dtos.TourWithManagerAndShowsForCreation, Entities.Tour>();
+                // config.CreateMap<Dtos.ShowForCreation, Entities.Show>();
+
+                // config.CreateMap<Entities.Tour, Dtos.TourForUpdate>().ReverseMap();
+
+            });
+
 
             app.UseRouting();
 

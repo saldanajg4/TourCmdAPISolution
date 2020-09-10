@@ -135,3 +135,6 @@ D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\n
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
