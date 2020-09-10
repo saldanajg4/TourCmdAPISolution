@@ -60,11 +60,6 @@ namespace TourCmdAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            // var config = new MapperConfiguration(cfg =>
-            // {
-            //     cfg.CreateMap<Entities.Tour, Dtos.Tour>();
-            // });
-        
 
              var config = new MapperConfiguration(config =>
             {
