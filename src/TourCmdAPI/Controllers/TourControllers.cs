@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TourCmdAPI.DbContexts;
 using TourCmdAPI.IRepos;
 
 namespace TourCmdAPI.Controllers{

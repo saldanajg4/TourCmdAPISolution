@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
-using TourCmdAPI.DbContexts;
+using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
 using TourCmdAPI.Repos;

@@ -10,8 +10,8 @@ using TourCmdAPI.Services;
 namespace TourCmdAPI.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20200909180719_TourInitialDB")]
-    partial class TourInitialDB
+    [Migration("20200911041817_Redesign data tables")]
+    partial class Redesigndatatables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasKey("BandId");
 
-                    b.ToTable("Band");
+                    b.ToTable("Bands");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Manager", b =>
@@ -74,7 +74,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasKey("ManagerId");
 
-                    b.ToTable("Manager");
+                    b.ToTable("Managers");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Show", b =>
@@ -173,7 +173,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("TourItems");
+                    b.ToTable("Tours");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Show", b =>

@@ -2,7 +2,7 @@ using System;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TourCmdAPI.Controllers;
-using TourCmdAPI.DbContexts;
+using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
 using TourCmdAPI.Repos;

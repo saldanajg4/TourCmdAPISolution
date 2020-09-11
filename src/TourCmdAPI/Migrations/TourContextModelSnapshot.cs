@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TourCmdAPI.DbContexts;
+using TourCmdAPI.Services;
 
 namespace TourCmdAPI.Migrations
 {
@@ -45,7 +45,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasKey("BandId");
 
-                    b.ToTable("Band");
+                    b.ToTable("Bands");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Manager", b =>
@@ -72,7 +72,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasKey("ManagerId");
 
-                    b.ToTable("Manager");
+                    b.ToTable("Managers");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Show", b =>
@@ -171,7 +171,7 @@ namespace TourCmdAPI.Migrations
 
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("TourItems");
+                    b.ToTable("Tours");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Show", b =>

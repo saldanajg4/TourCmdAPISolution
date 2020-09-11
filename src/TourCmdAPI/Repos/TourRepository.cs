@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TourCmdAPI.DbContexts;
+using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
 
@@ -19,10 +19,10 @@ namespace TourCmdAPI.Repos
         public async Task<IEnumerable<Tour>> GetTours(bool includeShows = false)
         {
             if(includeShows){
-                return await _context.TourItems.Include(t => t.Band).Include(t => t.Shows).ToListAsync();
+                return await _context.Tours.Include(t => t.Band).Include(t => t.Shows).ToListAsync();
             }
             else{
-                return await _context.TourItems.Include(t => t.Band).ToListAsync();
+                return await _context.Tours.Include(t => t.Band).ToListAsync();
             }
         }
     }
