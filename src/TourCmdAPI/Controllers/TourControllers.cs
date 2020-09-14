@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,6 +23,17 @@ namespace TourCmdAPI.Controllers{
         
              var tours = _mapper.Map<IEnumerable<Entities.Tour>>(toursFromRepo);
             return Ok(tours);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTourById(Guid id)
+        {
+            IEnumerable<Entities.Tour> tourResult = await tourRepository.GetTourById(id);
+            var tour = _mapper.Map<IEnumerable<Entities.Tour>>(tourResult);
+            if(tour == null || ((List<Entities.Tour>)tourResult).Count == 0){
+                return NotFound();
+            }
+            return Ok(tour);
         }
         // [HttpGet]
         // public ActionResult<IEnumerable<string>> Get(){

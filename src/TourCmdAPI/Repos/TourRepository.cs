@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
+using System.Linq;
+using System;
 
 namespace TourCmdAPI.Repos
 {
@@ -24,6 +26,10 @@ namespace TourCmdAPI.Repos
             else{
                 return await _context.Tours.Include(t => t.Band).ToListAsync();
             }
+        }
+        public async Task<IEnumerable<Tour>> GetTourById(Guid id){
+            return await _context.Tours.Include(b => b.Band).Include(s => s.Shows)
+                .Where(t => t.TourId == id).ToListAsync();
         }
     }
 }
