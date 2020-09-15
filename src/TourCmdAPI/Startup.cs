@@ -107,7 +107,8 @@ namespace TourCmdAPI
 
             });
 
-
+            // Enable CORS
+            app.UseCors("AllowAllOriginsHeadersAndMethods");
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
