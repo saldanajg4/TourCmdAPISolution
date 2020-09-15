@@ -138,3 +138,8 @@ D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\n
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\AutoMapper.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Utf8Json.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Utf8Json.AspNetCoreMvcFormatter.dll

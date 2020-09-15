@@ -10,6 +10,7 @@ using Xunit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace TourCmdAPI.Tests
 {

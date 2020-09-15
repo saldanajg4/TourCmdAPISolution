@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +17,7 @@ using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
 using TourCmdAPI.Repos;
+
 
 namespace TourCmdAPI
 {
@@ -28,6 +30,21 @@ namespace TourCmdAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+
+                var jsonOutputFormatter = setupAction.OutputFormatters
+                    .OfType<SystemTextJsonOutputFormatter>().FirstOrDefault();
+
+                if(jsonOutputFormatter != null){
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tour+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithestimatedprofits+json");
+                }
+
+            });
  
             var builder = new NpgsqlConnectionStringBuilder();
             builder.ConnectionString = Configuration.GetConnectionString("TourConnection");
@@ -60,11 +77,6 @@ namespace TourCmdAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            // var config = new MapperConfiguration(cfg =>
-            // {
-            //     cfg.CreateMap<Entities.Tour, Dtos.Tour>();
-            // });
 
              var config = new MapperConfiguration(config =>
             {
@@ -101,11 +113,7 @@ namespace TourCmdAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                //needs to be removed
-                // endpoints.MapGet("/", async context =>
-                // {
-                //     await context.Response.WriteAsync("Hello World!");
-                // });
+
             });
         }
     }

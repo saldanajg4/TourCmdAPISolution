@@ -27,7 +27,7 @@ namespace TourCmdAPI.Repos
                 return await _context.Tours.Include(t => t.Band).ToListAsync();
             }
         }
-        public async Task<IEnumerable<Tour>> GetTourById(Guid id){
+        public async Task<IEnumerable<Entities.Tour>> GetTourById(Guid id){
             return await _context.Tours.Include(b => b.Band).Include(s => s.Shows)
                 .Where(t => t.TourId == id).ToListAsync();
         }
