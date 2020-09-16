@@ -70,7 +70,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "TourClient:build:production"
+              "browserTarget": "TourClient:build:production",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },
