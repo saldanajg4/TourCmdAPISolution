@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wsrRYEhh6d6ONUG0VEW9k/A0R0miNQaEzVoQ8BubblSKXCp8EZZzsMgpOxlWO2zwDZs3mUKPwutZM45g7qjIlg==",
+  "dgSpecHash": "/1dGxqrFr3OS2Y6fqvYlYuITImxnt+F0Lymwo6LbxEJr1yVs0aVmxGjUsQy+JZ/IZl1FBs+J/EDf0F7cqu0Vgg==",
   "success": true,
-  "projectFilePath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
+  "projectFilePath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",

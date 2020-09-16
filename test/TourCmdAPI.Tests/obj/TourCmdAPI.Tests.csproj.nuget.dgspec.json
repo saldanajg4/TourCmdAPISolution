@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {}
+    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {}
   },
   "projects": {
-    "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
+    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
+        "projectUniqueName": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
         "projectName": "TourCmdAPI",
-        "projectPath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
+        "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\obj\\",
+        "outputPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -100,14 +100,14 @@
         }
       }
     },
-    "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {
+    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
+        "projectUniqueName": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
         "projectName": "TourCmdAPI.Tests",
-        "projectPath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
+        "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\obj\\",
+        "outputPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -124,8 +124,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
-                "projectPath": "D:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj"
+              "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
+                "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj"
               }
             }
           }
