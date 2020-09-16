@@ -1,11 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+// proxy.conf.json forwards requests from localhost:4200 to my 
+// webapi in azure https://tourwebapp2.azurewebsites.net/api/
 
 export const environment = {
   production: false,
-  // baseUrl: 'http://localhost:5000/api'
-  baseUrl: 'https://tourwebapp2.azurewebsites.net/api/'
+  baseUrl: 'http://localhost:4200/api'
 };
 
 /*
