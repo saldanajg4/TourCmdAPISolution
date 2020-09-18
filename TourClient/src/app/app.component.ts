@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {MenuItem} from 'primeng/api';
 import { Router, RouterLink } from '@angular/router';
+import {MenuModule} from 'primeng/menu';
 
 @Component({
   selector: 'app-root',

@@ -8,6 +8,7 @@ import { TourComponent } from './tours/shared/tour/tour.component';
 import { TourService } from './tours/shared/tour.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     HttpClientModule,
     BrowserAnimationsModule,
     TabMenuModule,
+    MenuModule,
 		
   ],
   providers: [TourService],

@@ -3,9 +3,6 @@
       "target": "https://tourwebapp2.azurewebsites.net",
       "secure": false,
       "changeOrigin": true,
-      "pathRewrite": {
-        "^/api": ""
-      },
       "logLevel": "debug"
     }
   }
