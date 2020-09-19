@@ -9,6 +9,8 @@ import { TourService } from './tours/shared/tour.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { MenuModule } from 'primeng/menu';
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MenuModule } from 'primeng/menu';
     BrowserAnimationsModule,
     TabMenuModule,
     MenuModule,
-		
+    PanelModule,
+    TableModule
+    
   ],
   providers: [TourService],
   bootstrap: [AppComponent]

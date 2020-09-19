@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tour } from '../tour.model';
 import { TourService } from '../tour.service';
+import {TableModule} from 'primeng/table';
 
 @Component({
   selector: 'app-tour',

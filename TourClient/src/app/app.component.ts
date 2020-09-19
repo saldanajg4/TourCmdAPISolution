@@ -20,16 +20,17 @@ export class AppComponent {
 
     ngOnInit() {
         this.items = [
-            {label: 'Stats', icon: 'fa fa-fw fa-bar-chart', command: (event) =>{
-              console.log(event);
+            {label: 'Stats', icon: 'fa fa-fw fa-bar-chart',
+              command: (event) =>{
+              console.log(event.item.label);
               this.router.navigate(['/tour']);
             }},
-            {label: 'Calendar', icon: 'fa fa-fw fa-calendar', command: (event) =>{
-              console.log(event);
-            }},
+            {label: 'Calendar', icon: 'fa fa-fw fa-calendar',  routerLink: ['/tour']},
+
             {label: 'Documentation', icon: 'fa fa-fw fa-book', command: (event) =>{
               console.log(event);
             }},
+
             {label: 'Support', icon: 'fa fa-fw fa-support', command: (event) =>{
               console.log(event);
             }},
