@@ -1,9 +1,13 @@
 <p-panel header="Tours">
+    <div>
+        <button pButton type="button" (click)="addTourNavigate()"  label="Add a tour" icon="pi pi-plus"  badge="8"></button>
+    </div>
     <p-table [value]="tours">
         <ng-template pTemplate="header">
             <tr>
                 <th>Band</th>
-                <th>Title</th>
+                <th>Title link</th>
+                <th>Title button</th>
                 <th>Starts On</th>
                 <th>Ends On</th>
             </tr>
@@ -11,10 +15,17 @@
         <ng-template pTemplate="body" let-tour>
             <tr>
                 <td>{{tour.band.name}}</td>
-                <td>{{tour.title}}</td>
-                <td>{{tour.startDate}}</td>
-                <td>{{tour.endDate}}</td>
+                <td><a [routerLink]="['/tour',tour.tourId]">{{tour.title}}</a></td>
+                <td><p-button (click)="showDialog(tour.tourId)" label="{{tour.title}}"></p-button>
+                </td>
+                <td>{{tour.startDate|date:'MM/dd/yyyy'}}</td>
+                <td>{{tour.endDate|date:'MM/dd/yyyy'}}</td>
             </tr>
         </ng-template>
     </p-table>
 </p-panel>
+
+<p-dialog header="Title" [(visible)]="displayTour">
+    <p-button (click)="closeDialog()" icon="fa fa-close" label="Close"></p-button>
+</p-dialog>
+

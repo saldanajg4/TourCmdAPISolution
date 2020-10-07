@@ -42,6 +42,30 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.tour+json");
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.tourwithestimatedprofits+json");
+                     jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithshows+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithestimatedprofitsandshows+json");
+
+                    //order formatters
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.order+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.orderwithitems+json");
+                }
+
+                var jsonInputFormatter = setupAction.OutputFormatters
+                    .OfType<SystemTextJsonInputFormatter>().FirstOrDefault();
+
+                if(jsonInputFormatter != null){
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithmanagerforcreation+json");
+                     jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithshowsforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.tourwithmanagerandshowsforcreation+json");
                 }
 
             });
@@ -54,8 +78,18 @@ namespace TourCmdAPI
             services.AddDbContext<TourContext>(opt => opt.UseNpgsql
             (builder.ConnectionString)
             );
+
+            var orderBuilder = new NpgsqlConnectionStringBuilder();
+            orderBuilder.ConnectionString = Configuration.GetConnectionString("OrderConnection");
+            orderBuilder.Username = Configuration["UserID"];
+            orderBuilder.Password = Configuration["Password"];
+
+            services.AddDbContext<OrderContext>(opt => opt.UseNpgsql
+            (orderBuilder.ConnectionString)
+            );
             
             services.AddScoped<ITourRepository, TourRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
              // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -70,9 +104,10 @@ namespace TourCmdAPI
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-            TourContext context)
+            TourContext context, OrderContext orderContext)
         {
             context.Database.Migrate();
+            orderContext.Database.Migrate();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -1,0 +1,35 @@
+<div [formGroup]="show">
+    <div class="p-field p-grid">
+      <label class="p-col-12 p-md-2" 
+        [attr.for]="'dateId'+showIndex">Date</label>
+        <input class="p-col-12 p-md-6" [attr.id]="'dateId'+showIndex" 
+          type="date" formControlName="date" pInputText />
+    </div>
+
+    <div class="p-field p-grid">
+      <label class=" p-col-12 p-md-2" [attr.for]="'venueId'+showIndex">Venue</label>
+        <input class=" p-col-12 p-md-6" [attr.id]="'venueId'+showIndex" 
+          type="text" formControlName="venue" pInputText/>
+    </div>
+
+    <div class="p-field p-grid">
+      <label class="p-col-12 p-md-2" [attr.for]="'cityId'+showIndex">City</label>
+        <input class=" p-col-12 p-md-6" [attr.id]="'cityId'+showIndex" 
+          type="text" formControlName="city" pInputText />
+    </div>
+    <div class="p-field p-grid">
+      <label class="p-col-12 p-md-2" [attr.for]="'countryId'+showIndex">Country</label>
+        <input class=" p-col-12 p-md-6" [attr.id]="'countryId'+showIndex" 
+          type="text" formControlName="country" pInputText/>
+    </div>
+  
+    <!-- remove show button -->
+  
+    <div class="p-grid">
+        <div class="p-col-12 p-md-4 p-offset-4">
+            <button pButton class="p-button-danger" (click)="removeShowClicked.emit(showIndex)" label="Remove show" icon="pi pi-minus"></button>
+        </div>
+    </div>
+  
+  
+  </div>

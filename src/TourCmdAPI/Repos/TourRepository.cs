@@ -20,6 +20,7 @@ namespace TourCmdAPI.Repos
 
         public async Task<IEnumerable<Tour>> GetTours(bool includeShows = false)
         {
+            // includeShows = true;
             if(includeShows){
                 return await _context.Tours.Include(t => t.Band).Include(t => t.Shows).ToListAsync();
             }
@@ -27,9 +28,36 @@ namespace TourCmdAPI.Repos
                 return await _context.Tours.Include(t => t.Band).ToListAsync();
             }
         }
-        public async Task<IEnumerable<Entities.Tour>> GetTourById(Guid id){
-            return await _context.Tours.Include(b => b.Band).Include(s => s.Shows)
-                .Where(t => t.TourId == id).ToListAsync();
+        public async Task<Entities.Tour> GetTourById(Guid id, bool includeShows = false){
+            if(includeShows){
+                return await _context.Tours.Include(t => t.Band).Include(t => t.Shows)
+                    .Where(t => t.TourId == id).FirstOrDefaultAsync();
+            }
+            else{
+                 return await _context.Tours.Include(b => b.Band)
+                    .Where(t => t.TourId == id).FirstOrDefaultAsync();
+            }
+            
+        }
+
+        public async Task AddTour(Tour tour)
+        {
+            await _context.Tours.AddAsync(tour);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            return (await _context.SaveChangesAsync() >= 0);
+        }
+
+        public async Task<IEnumerable<Band>> GetBands()
+        {
+            return await _context.Bands.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Manager>> GetManagers()
+        {
+            return await _context.Managers.ToListAsync();
         }
     }
 }

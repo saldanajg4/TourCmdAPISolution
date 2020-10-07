@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TourCmdAPI.Migrations
 {
-    public partial class TourInitialDB : Migration
+    public partial class initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Band",
+                name: "Bands",
                 columns: table => new
                 {
                     BandId = table.Column<Guid>(nullable: false),
@@ -20,11 +20,11 @@ namespace TourCmdAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Band", x => x.BandId);
+                    table.PrimaryKey("PK_Bands", x => x.BandId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Manager",
+                name: "Managers",
                 columns: table => new
                 {
                     ManagerId = table.Column<Guid>(nullable: false),
@@ -36,11 +36,11 @@ namespace TourCmdAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manager", x => x.ManagerId);
+                    table.PrimaryKey("PK_Managers", x => x.ManagerId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TourItems",
+                name: "Tours",
                 columns: table => new
                 {
                     TourId = table.Column<Guid>(nullable: false),
@@ -58,17 +58,17 @@ namespace TourCmdAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TourItems", x => x.TourId);
+                    table.PrimaryKey("PK_Tours", x => x.TourId);
                     table.ForeignKey(
-                        name: "FK_TourItems_Band_BandId",
+                        name: "FK_Tours_Bands_BandId",
                         column: x => x.BandId,
-                        principalTable: "Band",
+                        principalTable: "Bands",
                         principalColumn: "BandId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TourItems_Manager_ManagerId",
+                        name: "FK_Tours_Managers_ManagerId",
                         column: x => x.ManagerId,
-                        principalTable: "Manager",
+                        principalTable: "Managers",
                         principalColumn: "ManagerId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,9 +92,9 @@ namespace TourCmdAPI.Migrations
                 {
                     table.PrimaryKey("PK_Shows", x => x.ShowId);
                     table.ForeignKey(
-                        name: "FK_Shows_TourItems_TourId",
+                        name: "FK_Shows_Tours_TourId",
                         column: x => x.TourId,
-                        principalTable: "TourItems",
+                        principalTable: "Tours",
                         principalColumn: "TourId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -105,13 +105,13 @@ namespace TourCmdAPI.Migrations
                 column: "TourId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TourItems_BandId",
-                table: "TourItems",
+                name: "IX_Tours_BandId",
+                table: "Tours",
                 column: "BandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TourItems_ManagerId",
-                table: "TourItems",
+                name: "IX_Tours_ManagerId",
+                table: "Tours",
                 column: "ManagerId");
         }
 
@@ -121,13 +121,13 @@ namespace TourCmdAPI.Migrations
                 name: "Shows");
 
             migrationBuilder.DropTable(
-                name: "TourItems");
+                name: "Tours");
 
             migrationBuilder.DropTable(
-                name: "Band");
+                name: "Bands");
 
             migrationBuilder.DropTable(
-                name: "Manager");
+                name: "Managers");
         }
     }
 }

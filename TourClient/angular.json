@@ -18,7 +18,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -27,10 +27,16 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/primeng/resources/primeng.css",
               "node_modules/primeflex/primeflex.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-purple/theme.css",
+
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/automapper-ts/dist/automapper.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -45,7 +51,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

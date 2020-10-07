@@ -23,9 +23,13 @@ namespace TourCmdAPI
             {
                 try
                 {
-                    var context = scope.ServiceProvider.GetService<TourContext>();
-                    context.Database.Migrate();
-                    context.EnsureSeedDataForContext();
+                    // var context = scope.ServiceProvider.GetService<TourContext>();
+                    // context.Database.Migrate();
+                    // context.EnsureSeedDataForContext();
+
+                    // var orderContext = scope.ServiceProvider.GetService<OrderContext>();
+                    // orderContext.Database.Migrate();
+                    // orderContext.EnsureSeedDataForOrderContext();
                 }
                 catch (System.Exception ex)
                 {

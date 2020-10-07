@@ -6,6 +6,10 @@ using TourCmdAPI.Entities;
 namespace TourCmdAPI.IRepos{
     public interface ITourRepository{
         Task<IEnumerable<Tour>> GetTours(bool includeShows = false);
-        Task<IEnumerable<Tour>> GetTourById(Guid id);
+        Task<Tour> GetTourById(Guid tourId, bool includeShows = false);
+        Task AddTour(Tour tour);
+        Task<bool> SaveAsync();
+        Task<IEnumerable<Band>> GetBands();
+        Task<IEnumerable<Manager>> GetManagers();
     }
 }

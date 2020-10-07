@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {TabMenuModule} from 'primeng/tabmenu';
+
 import {MenuItem} from 'primeng/api';
 import { Router, RouterLink } from '@angular/router';
-import {MenuModule} from 'primeng/menu';
+
 
 @Component({
   selector: 'app-root',
@@ -20,12 +20,12 @@ export class AppComponent {
 
     ngOnInit() {
         this.items = [
-            {label: 'Stats', icon: 'fa fa-fw fa-bar-chart',
+            {label: 'Tours', icon: 'fa fa-fw fa-bar-chart',
               command: (event) =>{
               console.log(event.item.label);
               this.router.navigate(['/tour']);
             }},
-            {label: 'Calendar', icon: 'fa fa-fw fa-calendar',  routerLink: ['/tour']},
+            {label: 'Orders', icon: 'fa fa-fw fa-calendar',  routerLink: ['/order']},
 
             {label: 'Documentation', icon: 'fa fa-fw fa-book', command: (event) =>{
               console.log(event);
