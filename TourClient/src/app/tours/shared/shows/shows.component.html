@@ -1,5 +1,8 @@
 <div *ngIf="shows" class="p-grid">
     <p-panel header="Shows">
+        <div>
+            <button pButton type="button" (click)="addShowNavigate(tourId)"  label="Add show" icon="pi pi-plus"  badge="8"></button>
+        </div>
         <p-table [value]="shows">
             <ng-template pTemplate="header">
                 <tr>

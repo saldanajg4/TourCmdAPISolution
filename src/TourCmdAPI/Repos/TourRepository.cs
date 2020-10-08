@@ -59,5 +59,19 @@ namespace TourCmdAPI.Repos
         {
             return await _context.Managers.ToListAsync();
         }
+
+        public async Task<bool> TourExists(Guid tourId)
+        {
+            return await _context.Tours.AnyAsync(t => t.TourId == tourId);
+        }
+
+        public async Task AddShow(Guid tourId,Show show)
+        { 
+            var tour = await GetTourById(tourId);
+            if(tour == null)
+                throw new Exception($"Cannot add show to tour with tourId ${tourId}, tour does not exist") ;
+            tour.Shows.Add(show);
+            // await _context.Shows.AddAsync(show);
+        }
     }
 }

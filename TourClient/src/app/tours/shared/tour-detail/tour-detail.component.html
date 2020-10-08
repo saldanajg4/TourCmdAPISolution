@@ -20,6 +20,7 @@
                 </div>
             </p-card>
         </div>
-        <app-shows *ngIf="tour && this.tour.shows && tour.shows.length" [shows]="this.tour.shows"></app-shows> 
+        
+        <app-shows *ngIf="tour && this.tour.shows"[tourId]="this.tour.tourId" [shows]="this.tour.shows"></app-shows> 
     </p-panel>
 </div>

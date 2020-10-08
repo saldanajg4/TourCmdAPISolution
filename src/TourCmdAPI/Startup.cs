@@ -66,6 +66,8 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.tourwithshowsforcreation+json");
                     jsonInputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.tourwithmanagerandshowsforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.showcollectionforcreation+json");
                 }
 
             });

@@ -11,5 +11,7 @@ namespace TourCmdAPI.IRepos{
         Task<bool> SaveAsync();
         Task<IEnumerable<Band>> GetBands();
         Task<IEnumerable<Manager>> GetManagers();
+        Task<bool> TourExists(Guid tourId);
+        Task AddShow(Guid tourId, Show show);
     }
 }

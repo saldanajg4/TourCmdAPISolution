@@ -32,6 +32,7 @@ import { openStdin } from 'process';
 import 'automapper-ts';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
 import { ShowSingleComponent } from './tours/shared/shows/show-single/show-single.component';
+import { ShowAddComponent } from './tours/shared/shows/show-add/show-add.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ShowSingleComponent } from './tours/shared/shows/show-single/show-singl
     OrderDetailComponent,
     ItemsComponent,
     TourAddComponent,
-    ShowSingleComponent
+    ShowSingleComponent,
+    ShowAddComponent
   ],
   imports: [
     BrowserModule,
@@ -110,6 +112,9 @@ export class AppModule {
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forMember('bandid', function (opts) { opts.mapFrom('band'); })
       .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
+
+      automapper.createMap('ShowCollectionFormModelShowsArray',
+        'ShowCollectionForCreation');
     
   }
  }

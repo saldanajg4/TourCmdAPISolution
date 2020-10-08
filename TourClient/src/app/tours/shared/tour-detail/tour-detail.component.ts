@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TourService } from '../tour.service';
 import {CardModule} from 'primeng/card';
 import { Show } from 'src/app/shows/shared/show.model';
@@ -18,7 +18,8 @@ export class TourDetailComponent implements OnInit, OnDestroy {
   isAdmin = false;
   shows: Show[];
 
-  constructor(private route: ActivatedRoute, private tourSvc: TourService) { }
+  constructor(private route: ActivatedRoute, private tourSvc: TourService,
+      private router: Router) { }
   
 
   ngOnInit(): void {
@@ -44,7 +45,9 @@ export class TourDetailComponent implements OnInit, OnDestroy {
         }
       })
   }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+  
 }
