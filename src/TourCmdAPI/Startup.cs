@@ -72,6 +72,19 @@ namespace TourCmdAPI
 
             });
  
+ // Configure CORS so the API allows requests from JavaScript.  
+            // For demo purposes, all origins/headers/methods are allowed.  
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("AllowAllOriginsHeadersAndMethods",
+            //         builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            // });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
+                    builder => builder.WithOrigins("https://localhost:4200"));
+            });
+
             var builder = new NpgsqlConnectionStringBuilder();
             builder.ConnectionString = Configuration.GetConnectionString("TourConnection");
             builder.Username = Configuration["UserID"];
@@ -146,7 +159,9 @@ namespace TourCmdAPI
 
             app.UseHttpsRedirection();
             // Enable CORS
-            app.UseCors("AllowAllOriginsHeadersAndMethods");
+            // app.UseCors("AllowAllOriginsHeadersAndMethods");
+            app.UseCors("AllowAllTourOriginsHeadersAndMethods");
+            
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
