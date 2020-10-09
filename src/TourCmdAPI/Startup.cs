@@ -115,17 +115,17 @@ namespace TourCmdAPI
                 app.UseDeveloperExceptionPage();
             }
 
-             var config = new MapperConfiguration(config =>
-            {
-                config.CreateMap<Entities.Tour, Dtos.Tour>()
-                    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+            //  var config = new MapperConfiguration(config =>
+            // {
+            //     config.CreateMap<Entities.Tour, Dtos.Tour>()
+            //         .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
 
                 // config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfits>()
                 //    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
 
-                config.CreateMap<Entities.Band, Dtos.Band>();
-                config.CreateMap<Entities.Manager, Dtos.Manager>();
-                config.CreateMap<Entities.Show, Dtos.Show>();
+                // config.CreateMap<Entities.Band, Dtos.Band>();
+                // config.CreateMap<Entities.Manager, Dtos.Manager>();
+                // config.CreateMap<Entities.Show, Dtos.Show>();
 
                 // config.CreateMap<Dtos.TourForCreation, Entities.Tour>();
                 // config.CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
@@ -142,8 +142,9 @@ namespace TourCmdAPI
 
                 // config.CreateMap<Entities.Tour, Dtos.TourForUpdate>().ReverseMap();
 
-            });
+            // });
 
+            app.UseHttpsRedirection();
             // Enable CORS
             app.UseCors("AllowAllOriginsHeadersAndMethods");
             app.UseRouting();
