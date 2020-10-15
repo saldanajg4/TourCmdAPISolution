@@ -13,7 +13,7 @@
             <tr>
                 <td><a [routerLink]="['/order',order.orderId]">{{order.customerName}}</a></td>
                 <td>{{order.description}}</td>
-                <td>{{order.createdAt|date:'short'}}</td>
+                <td>{{order.createdOn|date:'short'}}</td>
                 <td>{{order.employee.employeeName}}</td>
             </tr>
         </ng-template>
