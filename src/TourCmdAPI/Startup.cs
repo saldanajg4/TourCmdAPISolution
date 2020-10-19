@@ -38,6 +38,7 @@ namespace TourCmdAPI
                     .OfType<SystemTextJsonOutputFormatter>().FirstOrDefault();
 
                 if(jsonOutputFormatter != null){
+                    //output formatters from the web api into client
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.tour+json");
                     jsonOutputFormatter.SupportedMediaTypes
@@ -47,16 +48,27 @@ namespace TourCmdAPI
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.tourwithestimatedprofitsandshows+json");
 
-                    //order formatters
+                    //order formatters from the web api into client
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.order+json");
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.orderwithitems+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.item+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.itemwithestimatedcost+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.employee+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.allcustomers+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.customer+json");
+                    
                 }
 
                 var jsonInputFormatter = setupAction.OutputFormatters
                     .OfType<SystemTextJsonInputFormatter>().FirstOrDefault();
-
+                //input formatters from client into web api like in httppost
                 if(jsonInputFormatter != null){
                     jsonInputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.tourforcreation+json");
@@ -68,17 +80,18 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.tourwithmanagerandshowsforcreation+json");
                     jsonInputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.showcollectionforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.itemforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.itemcollectionforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.employeeforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.customerforcreation+json");
                 }
 
             });
  
- // Configure CORS so the API allows requests from JavaScript.  
-            // For demo purposes, all origins/headers/methods are allowed.  
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy("AllowAllOriginsHeadersAndMethods",
-            //         builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            // });
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",

@@ -19,10 +19,12 @@ namespace TourCmdAPI.Entities
         [Required]
         public decimal Price { get; set; }
 
-         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public decimal EstimatedCost { get; set; }
 
-        public int OrderId { get; set; }
+        //  [ForeignKey("OrderId")]
+        // public Order Order { get; set; }
+
+        // public int OrderId { get; set; }
 
 
 

@@ -33,6 +33,11 @@ import 'automapper-ts';
 import { EnsureAcceptHeaderInterceptor } from './shared/ensure-accept-header-interceptor';
 import { ShowSingleComponent } from './tours/shared/shows/show-single/show-single.component';
 import { ShowAddComponent } from './tours/shared/shows/show-add/show-add.component';
+import { OrderAddComponent } from './orders/shared/order/order-add/order-add.component';
+import { MenuItemsComponent } from './orders/shared/menu-items/menu-items.component';
+import { ItemAddComponent } from './orders/shared/item-add/item-add.component';
+import { ItemSingleComponent } from './orders/shared/item-single/item-single.component';
+import { ItemService } from './items/shared/item.service';
 
 
 @NgModule({
@@ -46,7 +51,11 @@ import { ShowAddComponent } from './tours/shared/shows/show-add/show-add.compone
     ItemsComponent,
     TourAddComponent,
     ShowSingleComponent,
-    ShowAddComponent
+    ShowAddComponent,
+    OrderAddComponent,
+    MenuItemsComponent,
+    ItemAddComponent,
+    ItemSingleComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +79,7 @@ import { ShowAddComponent } from './tours/shared/shows/show-add/show-add.compone
     InputTextModule,
     
   ],
-  providers: [TourService,OrderService,TourMasterDataService,
+  providers: [TourService,OrderService,TourMasterDataService, ItemService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EnsureAcceptHeaderInterceptor,
@@ -115,6 +124,9 @@ export class AppModule {
 
       automapper.createMap('ShowCollectionFormModelShowsArray',
         'ShowCollectionForCreation');
+
+      automapper.createMap('ItemCollectionFormModelItemsArray',
+        'ItemCollectionForCreation');
     
   }
  }

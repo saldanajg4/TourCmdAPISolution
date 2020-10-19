@@ -11,10 +11,7 @@ namespace TourCmdAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
-        [Required]
-        [MaxLength(200)]
-        public string CustomerName { get; set; }
-
+    
         [Required]
         [MaxLength(200)]
         public string Description { get; set; }
@@ -28,6 +25,11 @@ namespace TourCmdAPI.Entities
 
         [Required]
         public Employee Employee { get; set; }
+        [Required]
+        public int CustomerId { get; set; }
+
+        [Required]
+        public Customer Customer { get; set; }
 
         public ICollection<Item> Items { get; set; } = new List<Item>();
 

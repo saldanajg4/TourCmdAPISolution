@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TourCmdAPI.Services;
 
-namespace TourCmdAPI.Migrations.Order
+namespace TourCmdAPI.Migrations
 {
     [DbContext(typeof(OrderContext))]
     partial class OrderContextModelSnapshot : ModelSnapshot
@@ -18,6 +18,36 @@ namespace TourCmdAPI.Migrations.Order
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("TourCmdAPI.Entities.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("character varying(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+                });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Employee", b =>
                 {
@@ -67,12 +97,15 @@ namespace TourCmdAPI.Migrations.Order
                         .HasColumnType("character varying(2000)")
                         .HasMaxLength(2000);
 
+                    b.Property<decimal>("EstimatedCost")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("ItemName")
                         .IsRequired()
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Price")
@@ -105,10 +138,8 @@ namespace TourCmdAPI.Migrations.Order
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -126,6 +157,8 @@ namespace TourCmdAPI.Migrations.Order
 
                     b.HasKey("OrderId");
 
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Orders");
@@ -133,15 +166,19 @@ namespace TourCmdAPI.Migrations.Order
 
             modelBuilder.Entity("TourCmdAPI.Entities.Item", b =>
                 {
-                    b.HasOne("TourCmdAPI.Entities.Order", "Order")
+                    b.HasOne("TourCmdAPI.Entities.Order", null)
                         .WithMany("Items")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Order", b =>
                 {
+                    b.HasOne("TourCmdAPI.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("TourCmdAPI.Entities.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")

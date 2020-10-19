@@ -37,7 +37,7 @@ namespace TourCmdAPI.Controllers
             //check if exists in automapper
             var showEntities = mapper.Map<IEnumerable<Entities.Show>>(showCollection);
             foreach(var show in showEntities){
-                await tourRepo.AddShow(tourId, show);
+                await tourRepo.AddShow(tourId, show);//adding a show into particular tour using tourId
             }
             if(!await tourRepo.SaveAsync()){
                 throw new Exception("Adding a collection of shows failed on save.");

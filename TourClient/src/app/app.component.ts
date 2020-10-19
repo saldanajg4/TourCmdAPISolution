@@ -27,8 +27,9 @@ export class AppComponent {
             }},
             {label: 'Orders', icon: 'fa fa-fw fa-calendar',  routerLink: ['/order']},
 
-            {label: 'Documentation', icon: 'fa fa-fw fa-book', command: (event) =>{
+            {label: 'Items', icon: 'fa fa-fw fa-book', command: (event) =>{
               console.log(event);
+              this.router.navigateByUrl('/menu-items');
             }},
 
             {label: 'Support', icon: 'fa fa-fw fa-support', command: (event) =>{

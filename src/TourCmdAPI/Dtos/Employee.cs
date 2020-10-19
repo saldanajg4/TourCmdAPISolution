@@ -1,9 +1,9 @@
 namespace TourCmdAPI.Dtos
 {
-    public class Employee
+    public class Employee : EmployeeAbstract
     {
          public int EmployeeId { get; set; }
-        public string EmployeeName { get; set; }
+       
 
     }
 }

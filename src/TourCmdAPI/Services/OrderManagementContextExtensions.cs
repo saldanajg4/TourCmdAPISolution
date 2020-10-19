@@ -14,6 +14,7 @@ namespace TourCmdAPI.Services
             
             context.Orders.RemoveRange(context.Orders);
             context.Employees.RemoveRange(context.Employees);
+            context.Customers.RemoveRange(context.Customers);
      
 
             context.SaveChanges();
@@ -37,11 +38,28 @@ namespace TourCmdAPI.Services
                 }
             };
 
+            var customers = new List<Customer>()
+            {
+                new Customer()
+                {
+                    CustomerName = "Sandra",
+                     CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                },
+                new Customer()
+                {
+                    CustomerName = "Alberto",
+                     CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                }
+            };
+
+
             var orders = new List<Order>()
             {
                 new Order()
                 {
-                    CustomerName = "Alberto",
+                    CustomerId = 2,
                     Description = "Llega a las 11am",
                      CreatedBy = "system",
                     CreatedOn = DateTime.UtcNow,
@@ -80,7 +98,7 @@ namespace TourCmdAPI.Services
                 },                        
                 new Order()
                 {
-                    CustomerName = "Sandra",
+                    CustomerId = 1,
                     Description = "Llega a las 12pm",
                     EmployeeId = 2,
                      CreatedBy = "system",
@@ -119,6 +137,7 @@ namespace TourCmdAPI.Services
                 }
             };
              context.Employees.AddRange(emps);
+             context.Customers.AddRange(customers);
             context.Orders.AddRange(orders);
             
             

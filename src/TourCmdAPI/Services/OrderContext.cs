@@ -23,6 +23,7 @@ namespace TourCmdAPI.Services
         }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
 
          public override Task<int> SaveChangesAsync(CancellationToken cancellationToken 
@@ -39,11 +40,13 @@ namespace TourCmdAPI.Services
 
                 if (entry.State == EntityState.Added)
                 {
-                    entity.CreatedBy = _userInfoService.UserId;
+                    // entity.CreatedBy = _userInfoService.UserId;
+                    entity.CreatedBy = "jose";
                     entity.CreatedOn = DateTime.UtcNow;
                 }
 
-                entity.UpdatedBy = _userInfoService.UserId;
+                // entity.UpdatedBy = _userInfoService.UserId;
+                entity.UpdatedBy = "jose";
                 entity.UpdatedOn = DateTime.UtcNow;
             }
 

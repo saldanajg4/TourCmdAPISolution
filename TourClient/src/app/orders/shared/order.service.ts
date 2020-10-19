@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Item } from 'src/app/items/shared/item.model';
 import { BaseService } from 'src/app/shared/base.service';
 import { OrderWithItems } from './order-with-items.model';
 import { Order } from './order.model';
@@ -18,6 +19,9 @@ export class OrderService extends BaseService{
   getOrderWithItems(orderId: number): Observable<OrderWithItems[]>{
     return this.http.get<OrderWithItems[]>(`${this.baseUrl}/order/${orderId}`,
       {headers: {'Accept': 'application/vnd.jose.orderwithitems+json'}});
+  }
+  getItems():Observable<Item[]>{
+    return this.http.get<Item[]>(`${this.baseUrl}/item`);
   }
   // getTourWithEstimatedProfits(tourId: string): Observable<TourWithEstimatedProfits>{
   //   // return this.http.get<Tour[]>(this.baseUrl+'/tour', {headers: this.headers, responseType: 'json'});

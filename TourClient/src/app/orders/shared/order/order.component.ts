@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Order } from '../order.model';
 import { OrderService } from '../order.service';
 
@@ -10,7 +11,7 @@ import { OrderService } from '../order.service';
 export class OrderComponent implements OnInit {
 
   orders: Order[];
-  constructor(private orderSvc: OrderService) { }
+  constructor(private orderSvc: OrderService, private route: Router) { }
 
   ngOnInit(): void {
     this.orderSvc.getOrders().subscribe(
@@ -21,6 +22,10 @@ export class OrderComponent implements OnInit {
         console.log(JSON.stringify(this.orders));
       }
     )
+  }
+
+  addOrderNavigate(){
+    this.route.navigateByUrl('/order-add');
   }
 
 }
