@@ -25,7 +25,7 @@ namespace TourCmdAPI.Controllers{
         public async Task<IActionResult> getAllTours(){
             IEnumerable<Entities.Tour> toursFromRepo = await tourRepository.GetTours();
         
-             var tours = _mapper.Map<IEnumerable<Entities.Tour>>(toursFromRepo);
+             var tours = _mapper.Map<IEnumerable<Dtos.Tour>>(toursFromRepo);
             return Ok(tours);
         }
 
@@ -96,6 +96,7 @@ namespace TourCmdAPI.Controllers{
             new[] {"application/vnd.jose.tourwithmanagerforcreation+json"})]
         public async Task<IActionResult> AddTourWithManager([FromBody] 
                                         TourWithManagerForCreation tour){
+            Console.WriteLine("creating the tour");
             if(tour == null )
                 return BadRequest();
             //validation of DTO happens here

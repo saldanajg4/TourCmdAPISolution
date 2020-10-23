@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace TourCmdAPI.Repos
 
         public async Task<IEnumerable<Item>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return await _context.Items.Include(item => item.Ingredients)
+            .ToListAsync();
         }
 
         public async Task<Order> GetOrderById(int id, bool includeItems = false)
@@ -78,6 +80,56 @@ namespace TourCmdAPI.Repos
         public async Task<IEnumerable<Customer>> GetAllCustomers()
         {
             return await this._context.Customers.ToListAsync();
+        }
+
+        public async Task AddIngredientCategory(IngredientCategory ingredientCategory)
+        {
+            // var found = this._context.IngredientCategories
+            //     .Where(i => i.IngredientCategoryName == ingredientCategory.IngredientCategoryName).ToList();
+            // if(found.Count == 0)
+            await this._context.IngredientCategories.AddAsync(ingredientCategory); 
+        }
+
+        public async Task<IngredientCategory> GetIngredientCategoryById(int id)
+        {
+            return await this._context.IngredientCategories
+                .FirstOrDefaultAsync(ingCat => ingCat.IngredientCategoryId == id);
+        }
+
+        public async Task<IEnumerable<IngredientCategory>> GetAllIngredientCategories()
+        {
+            return await this._context.IngredientCategories.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetAllIngredients()
+        {
+            return await this._context.Ingredients
+                .Include(ic => ic.IngredientCategory).ToListAsync();
+        }
+
+        //   public async Task<Entities.Tour> GetTourById(Guid id, bool includeShows = false){
+        //     if(includeShows){
+        //         return await _context.Tours.Include(t => t.Band).Include(t => t.Shows)
+        //             .Where(t => t.TourId == id).FirstOrDefaultAsync();
+        //     }
+        //     else{
+        //          return await _context.Tours.Include(b => b.Band)
+        //             .Where(t => t.TourId == id).FirstOrDefaultAsync();
+        //     }
+            
+        // }
+
+
+        public async Task<Ingredient> GetIngredientById(int id)
+        {
+            return await this._context.Ingredients
+                .Include(ic => ic.IngredientCategory)
+                .FirstOrDefaultAsync(i => i.IngredientId == id);
+        }
+
+        public async Task AddIngredient(Ingredient ingredient)
+        {
+            await this._context.AddAsync(ingredient);
         }
     }
 }

@@ -25,7 +25,15 @@ namespace TourCmdAPI.Services
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<IngredientCategory> IngredientCategories { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            // builder.Entity<IngredientCategory>()
+            //     .HasIndex(i => i.IngredientCategoryName)
+            //     .IsUnique();
+        }
          public override Task<int> SaveChangesAsync(CancellationToken cancellationToken 
             = default(CancellationToken))
         {

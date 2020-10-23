@@ -6,9 +6,14 @@ namespace TourCmdAPI.Entities
     {
         public AutoMapping()
         {
-            //mapping for touring
+            //mapping for touring httpget from wep api to client
             CreateMap<Entities.Tour, Dtos.Tour>()
                 .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
+
+            
+        
+
+            
             CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfits>()
                 .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
             CreateMap<Entities.Band, Dtos.Band>();
@@ -25,10 +30,12 @@ namespace TourCmdAPI.Entities
             CreateMap<Dtos.ShowForCreation, Entities.Show>();
              CreateMap<Dtos.TourForCreation, Entities.Tour>();
             CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
-            CreateMap<Dtos.ItemForCreation, Entities.Item>();
+            
+            
                 
 
-            //mapping for Ordering for http get retrieving objects
+            //mapping for Ordering for http get retrieving objects, because I get entities
+            //from dbContext and send Dtos to client
             CreateMap<Entities.Order, Dtos.Order>()
                 .ForMember(d => d.Employee, o => o.MapFrom(s => s.Employee.EmployeeName));
             CreateMap<Entities.Order, Dtos.OrderWithItems>()
@@ -39,16 +46,18 @@ namespace TourCmdAPI.Entities
             CreateMap<Entities.Item, Dtos.ItemForCreation>();
             CreateMap<Entities.Item, Dtos.ItemWithEstimatedCost>();
             CreateMap<Entities.Customer, Dtos.Customer>();
-
+            CreateMap<Entities.Ingredient, Dtos.Ingredient>()
+                .ForMember(d => d.IngredientCategory, o => o.MapFrom(s => s.IngredientCategory.IngredientCategoryName));
+            CreateMap<Entities.IngredientCategory, Dtos.IngredientCategory>();
+            
             //mapping for Ordering for http post creating objects
             CreateMap<Dtos.EmployeeForCreation, Entities.Employee>();
             CreateMap<Dtos.CustomerForCreation, Entities.Customer>();
-            
-
-            
-           
-
-
+            CreateMap<Dtos.ItemForCreation, Entities.Item>();
+            CreateMap<Dtos.Ingredient, Entities.Ingredient>();
+            CreateMap<Dtos.IngredientCategoryForCreation, Entities.IngredientCategory>();
+            CreateMap<Dtos.IngredientForCreation, Entities.Ingredient>();
+            CreateMap<Dtos.IngredientCategory, Entities.IngredientCategory>();
         }
     }
 }

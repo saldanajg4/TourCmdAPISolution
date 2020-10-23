@@ -5,6 +5,12 @@
         <input class=" p-col-12 p-md-6" [attr.id]="'nameId'+itemIndex" 
           type="text" formControlName="itemName" pInputText/>
     </div>
+    <div class="p-field p-grid">
+        <label class=" p-col-12 p-md-2" [attr.for]="'ingredientsId'+itemIndex">Ingredients</label>
+        <p-multiSelect class=" p-col-12 p-md-6" [options]="ingredientOptions" [(ngModel)]="ingredients"
+         [attr.id]="'ingredientsId'+itemIndex" formControlName="ingredients" ></p-multiSelect>
+      </div>
+  
 
     <div class="p-field p-grid">
       <label class="p-col-12 p-md-2" [attr.for]="'descriptionId'+itemIndex">Description</label>

@@ -40,6 +40,7 @@ export class TourService extends BaseService{
   
 
   getTours(): Observable<Tour[]>{
+    console.log('getting all tours');
     // return this.http.get<Tour[]>(this.baseUrl+'/tour', {headers: this.headers, responseType: 'json'});
     return this.http.get<Tour[]>(this.baseUrl+'/tour');
   }
@@ -75,6 +76,7 @@ export class TourService extends BaseService{
   }
 
   addTourWithManager(tourToAdd: TourWithManagerForCreation): Observable<Tour>{
+    console.log("creating tour with manager but no shows");
     return this.http.post<Tour>(`${this.baseUrl}/tour`, tourToAdd,
       {headers: {'Content-Type': 'application/vnd.jose.tourwithmanagerforcreation+json'}});
   }

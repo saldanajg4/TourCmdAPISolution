@@ -1,0 +1,24 @@
+<p-panel header="Ingredients">
+    <div>
+        <button pButton type="button" (click)="addIngredient()"  label="Add an ingredient" icon="pi pi-plus"  badge="8"></button>
+    </div>
+    <p-table [value]="ingredients">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ingredient>
+            <tr>
+                <td>{{ingredient.ingredientId}}</td>
+                <!-- <td><a [routerLink]="['/tour',tour.tourId]">{{tour.title}}</a></td> -->
+                <td>{{ingredient.ingredientName}}</td>
+                <td>{{ingredient.ingredientCategory}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+
+

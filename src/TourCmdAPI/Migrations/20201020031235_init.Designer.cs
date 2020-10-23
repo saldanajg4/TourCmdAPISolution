@@ -10,8 +10,8 @@ using TourCmdAPI.Services;
 namespace TourCmdAPI.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20201016032909_Added CustomerFK to Order")]
-    partial class AddedCustomerFKtoOrder
+    [Migration("20201020031235_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,75 @@ namespace TourCmdAPI.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("TourCmdAPI.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("IngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("IngredientCategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("IngredientName")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("IngredientId");
+
+                    b.HasIndex("IngredientCategoryId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("TourCmdAPI.Entities.IngredientCategory", b =>
+                {
+                    b.Property<int>("IngredientCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("IngredientCategoryName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("IngredientCategoryId");
+
+                    b.HasIndex("IngredientCategoryName")
+                        .IsUnique();
+
+                    b.ToTable("IngredientCategories");
+                });
+
             modelBuilder.Entity("TourCmdAPI.Entities.Item", b =>
                 {
                     b.Property<int>("ItemId")
@@ -98,6 +167,9 @@ namespace TourCmdAPI.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("character varying(2000)")
                         .HasMaxLength(2000);
+
+                    b.Property<decimal>("EstimatedCost")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("ItemName")
                         .IsRequired()
@@ -161,6 +233,19 @@ namespace TourCmdAPI.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("TourCmdAPI.Entities.Ingredient", b =>
+                {
+                    b.HasOne("TourCmdAPI.Entities.IngredientCategory", "IngredientCategory")
+                        .WithMany()
+                        .HasForeignKey("IngredientCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TourCmdAPI.Entities.Item", null)
+                        .WithMany("Ingredients")
+                        .HasForeignKey("ItemId");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Item", b =>

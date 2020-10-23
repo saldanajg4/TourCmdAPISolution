@@ -38,6 +38,11 @@ import { MenuItemsComponent } from './orders/shared/menu-items/menu-items.compon
 import { ItemAddComponent } from './orders/shared/item-add/item-add.component';
 import { ItemSingleComponent } from './orders/shared/item-single/item-single.component';
 import { ItemService } from './items/shared/item.service';
+import { IngredientsComponent } from './orders/shared/ingredients/ingredients.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { IngredientCategoryComponent } from './ingredient-category/ingredient-category.component';
+import { IngredientService } from './ingredient/ingredient.service';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 @NgModule({
@@ -55,7 +60,11 @@ import { ItemService } from './items/shared/item.service';
     OrderAddComponent,
     MenuItemsComponent,
     ItemAddComponent,
-    ItemSingleComponent
+    ItemSingleComponent,
+    IngredientsComponent,
+    IngredientComponent,
+    IngredientCategoryComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -77,9 +86,10 @@ import { ItemService } from './items/shared/item.service';
     InputTextareaModule,
     CalendarModule,
     InputTextModule,
+    MultiSelectModule,
     
   ],
-  providers: [TourService,OrderService,TourMasterDataService, ItemService,
+  providers: [TourService,OrderService,TourMasterDataService, ItemService,IngredientService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EnsureAcceptHeaderInterceptor,

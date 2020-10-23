@@ -32,8 +32,9 @@ export class AppComponent {
               this.router.navigateByUrl('/menu-items');
             }},
 
-            {label: 'Support', icon: 'fa fa-fw fa-support', command: (event) =>{
+            {label: 'Ingredients', icon: 'fa fa-fw fa-support', command: (event) =>{
               console.log(event);
+              this.router.navigateByUrl('/ingredients');
             }},
             {label: 'Social', icon: 'fa fa-fw fa-twitter', command: (event) =>{
               console.log(event);

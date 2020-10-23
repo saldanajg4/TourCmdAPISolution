@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +21,7 @@ namespace TourCmdAPI.Entities
         public decimal Price { get; set; }
 
         public decimal EstimatedCost { get; set; }
+        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
         //  [ForeignKey("OrderId")]
         // public Order Order { get; set; }

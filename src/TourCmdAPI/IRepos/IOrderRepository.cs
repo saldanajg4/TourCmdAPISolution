@@ -18,5 +18,11 @@ namespace TourCmdAPI.IRepos
          Task AddCustomer(Customer customer);
          Task<Customer> GetCustomerById(int customerId);
          Task<IEnumerable<Customer>> GetAllCustomers();
+         Task AddIngredientCategory(IngredientCategory ingredientCategory);
+         Task<IngredientCategory> GetIngredientCategoryById(int id);
+         Task<IEnumerable<IngredientCategory>> GetAllIngredientCategories();
+         Task<IEnumerable<Ingredient>> GetAllIngredients();
+         Task<Ingredient> GetIngredientById(int id);
+         Task AddIngredient(Ingredient ingredient);
     }
 }

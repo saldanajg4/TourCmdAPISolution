@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
 import { ItemAddComponent } from './orders/shared/item-add/item-add.component';
 import { MenuItemsComponent } from './orders/shared/menu-items/menu-items.component';
 import { OrderDetailComponent } from './orders/shared/order-detail/order-detail.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'order-add', component: OrderAddComponent},
   {path: 'menu-items', component: MenuItemsComponent},
   {path: 'item-add', component: ItemAddComponent},
+  {path: 'ingredients', component: IngredientComponent},
   
 ];
 

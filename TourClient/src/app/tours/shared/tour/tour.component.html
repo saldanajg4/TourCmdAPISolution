@@ -14,7 +14,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-tour>
             <tr>
-                <td>{{tour.band.name}}</td>
+                <td>{{tour.band}}</td>
                 <td><a [routerLink]="['/tour',tour.tourId]">{{tour.title}}</a></td>
                 <td><p-button (click)="showDialog(tour.tourId)" label="{{tour.title}}"></p-button>
                 </td>

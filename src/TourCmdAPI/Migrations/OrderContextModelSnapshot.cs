@@ -79,6 +79,72 @@ namespace TourCmdAPI.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("TourCmdAPI.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("IngredientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("IngredientCategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("IngredientName")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("IngredientId");
+
+                    b.HasIndex("IngredientCategoryId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("TourCmdAPI.Entities.IngredientCategory", b =>
+                {
+                    b.Property<int>("IngredientCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("IngredientCategoryName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("IngredientCategoryId");
+
+                    b.ToTable("IngredientCategories");
+                });
+
             modelBuilder.Entity("TourCmdAPI.Entities.Item", b =>
                 {
                     b.Property<int>("ItemId")
@@ -162,6 +228,19 @@ namespace TourCmdAPI.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("TourCmdAPI.Entities.Ingredient", b =>
+                {
+                    b.HasOne("TourCmdAPI.Entities.IngredientCategory", "IngredientCategory")
+                        .WithMany()
+                        .HasForeignKey("IngredientCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TourCmdAPI.Entities.Item", null)
+                        .WithMany("Ingredients")
+                        .HasForeignKey("ItemId");
                 });
 
             modelBuilder.Entity("TourCmdAPI.Entities.Item", b =>

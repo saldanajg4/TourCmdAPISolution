@@ -24,7 +24,7 @@ export class TourAddComponent implements OnInit {
   bandOptions: any[];
   managerOptions: any[];
   selectedBand: Band;
-  isAdmin = false;
+  isAdmin = true;
 
   managers: Manager[];
   constructor(private masterDataSvc: TourMasterDataService,
@@ -96,12 +96,13 @@ export class TourAddComponent implements OnInit {
                 this.router.navigateByUrl('/tour');
               })
         }
-        else{
+        else{          
           let tour = automapper.map(
             'TourFormModel',
             'TourWithManagerForCreation',
             this.tourForm.value);
-  
+            console.log('diplaying tour');
+            console.log(JSON.stringify(tour));
           this.tourSvc.addTourWithManager(tour).subscribe(
             () => {
               this.router.navigateByUrl('/tour');
