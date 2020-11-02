@@ -8,6 +8,7 @@ using Microsoft.Extensions.Primitives;
 using TourCmdAPI.Dtos;
 using TourCmdAPI.Helpers;
 using TourCmdAPI.IRepos;
+using TourCmdAPI.Wrappers;
 
 namespace TourCmdAPI.Controllers{
     [Route("api/[controller]")]
@@ -26,7 +27,8 @@ namespace TourCmdAPI.Controllers{
             IEnumerable<Entities.Tour> toursFromRepo = await tourRepository.GetTours();
         
              var tours = _mapper.Map<IEnumerable<Dtos.Tour>>(toursFromRepo);
-            return Ok(tours);
+            // return Ok(tours);
+            return Ok(new Response<IEnumerable<Dtos.Tour>>(tours));
         }
 
         //Return diff representations of same resource.  Tour and TourWithEstimatedProfits
@@ -160,7 +162,8 @@ namespace TourCmdAPI.Controllers{
                 return NotFound();
             }
             // return Ok(_mapper.Map<T>(tourFromRepo));
-            return Ok(tour);
+            // return Ok(tour);
+            return Ok(new Response<T>(tour));
         }
 
         // [HttpGet]
