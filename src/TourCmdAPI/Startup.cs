@@ -143,6 +143,14 @@ namespace TourCmdAPI
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddHttpContextAccessor();
+            services.AddSingleton<IUriServices>(o =>
+            {//getting the base URL of the application
+                var accessor = o.GetRequiredService<IHttpContextAccessor>();
+                var request = accessor.HttpContext.Request;
+                var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
+                return new UriService(uri);
+            });
             services.AddControllers();
         }
 

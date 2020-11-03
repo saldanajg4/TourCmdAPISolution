@@ -18,14 +18,21 @@ namespace TourCmdAPI.Repos
             _context = ctx;
         }
 
-        public async Task<IEnumerable<Tour>> GetTours(bool includeShows = false)
+        public async Task<IEnumerable<Tour>> GetTours(int pageNumber, int pageSize,
+             bool includeShows = false)
         {
             // includeShows = true;
             if(includeShows){
-                return await _context.Tours.Include(t => t.Band).Include(t => t.Shows).ToListAsync();
+                return await _context.Tours
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .Include(t => t.Band).Include(t => t.Shows).ToListAsync();
             }
             else{
-                return await _context.Tours.Include(t => t.Band).ToListAsync();
+                return await _context.Tours
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .Include(t => t.Band).ToListAsync();
             }
         }
         public async Task<Entities.Tour> GetTourById(Guid id, bool includeShows = false){
@@ -72,6 +79,11 @@ namespace TourCmdAPI.Repos
                 throw new Exception($"Cannot add show to tour with tourId ${tourId}, tour does not exist") ;
             tour.Shows.Add(show);
             // await _context.Shows.AddAsync(show);
+        }
+
+        public async Task<int> GetTotalOfTours()
+        {
+            return await _context.Tours.CountAsync();
         }
     }
 }
