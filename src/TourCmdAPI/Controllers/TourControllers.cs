@@ -16,6 +16,7 @@ namespace TourCmdAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TokenAuthenticationFilter]
     public class TourController : ControllerBase
     {
         private readonly ITourRepository tourRepository;

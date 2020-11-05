@@ -17,7 +17,7 @@ using TourCmdAPI.Services;
 using TourCmdAPI.Entities;
 using TourCmdAPI.IRepos;
 using TourCmdAPI.Repos;
-
+using TourCmdAPI.TokenAuthentication;
 
 namespace TourCmdAPI
 {
@@ -134,6 +134,7 @@ namespace TourCmdAPI
             
             services.AddScoped<ITourRepository, TourRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ITokenManager, TokenManager>();
              // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {

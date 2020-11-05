@@ -56,7 +56,8 @@ namespace TourCmdAPI.Tests
             Assert.NotNull(tours);
         }
 
-        [Fact]
+        // [Fact]
+        [TokenAuthenticationFilter]
         public void GetToursReturnCorrectType(){
             //Arrange
            
@@ -68,7 +69,7 @@ namespace TourCmdAPI.Tests
             Assert.IsType<OkObjectResult>(tours.Result);
         }
 
-        [Fact]
+        // [Fact]
         public void GetAllTours_ShouldReturnGreaterThanZeroElements(){
             //Arrange
             //Act
