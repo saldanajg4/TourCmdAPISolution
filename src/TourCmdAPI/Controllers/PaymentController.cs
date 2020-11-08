@@ -18,7 +18,6 @@ namespace TourCmdAPI.Controllers
         private readonly IMapper _mapper;
         public PaymentController(IPaymentDetailsRepository repo, IMapper mapper)
         {
-            
             _repo = repo;            
             _mapper = mapper;
         }
