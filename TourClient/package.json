@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^10.1.2",
+    "@angular/animations": "^10.2.2",
     "@angular/cdk": "^10.2.1",
     "@angular/common": "~10.1.2",
     "@angular/compiler": "~10.1.2",
@@ -24,6 +24,7 @@
     "automapper-js": "^1.0.15",
     "automapper-ts": "^1.9.0",
     "font-awesome": "^4.7.0",
+    "ngx-toastr": "^13.1.0",
     "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.0",

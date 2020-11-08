@@ -21,7 +21,7 @@ export class TourComponent implements OnInit {
 
   ngOnInit() {
     this.tourSvc.getTours().subscribe(
-      ts => this.tours = ts,
+      ts => this.tours = ts.data,
       err => console.log(JSON.stringify(err)),
       () => {
         console.log(this.tours);

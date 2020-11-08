@@ -23,7 +23,7 @@ namespace TourCmdAPI.Filter
                 if(!tokenManager.VerifyToken(token))
                     verified = false;
             }
-            if(verified){
+            if(!verified){
                 context.ModelState.AddModelError("Unauthorized","Transaction not Authorized.");
                 context.Result = new UnauthorizedObjectResult(context.ModelState);
             }

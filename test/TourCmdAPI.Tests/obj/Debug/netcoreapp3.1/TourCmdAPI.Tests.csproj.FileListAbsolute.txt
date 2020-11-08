@@ -142,4 +142,6 @@ D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\n
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Utf8Json.dll
 D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Utf8Json.AspNetCoreMvcFormatter.dll
-D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\obj\Debug\netcoreapp3.1\TourCmdAPI.Tests.csprojAssemblyReference.cache
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+d:\users\gabriel\vsprojects\TourCmdAPISolution\test\TourCmdAPI.Tests\obj\Debug\netcoreapp3.1\TourCmdAPI.Tests.csprojAssemblyReference.cache

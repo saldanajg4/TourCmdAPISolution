@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -26,16 +27,8 @@ namespace TourCmdAPI.Controllers
             var orders = this.mapper.Map<IEnumerable<Entities.Order>>(ordersFromRepo);
             return Ok(orders);
         }
-        // [HttpGet("{orderId}")]
-        // public async Task<IActionResult> getOrderById(int orderId){
-        //     Entities.Order orderFromRepo = (Entities.Order)await this.repo.GetOrderById(orderId);
-        //     if(orderFromRepo == null)
-        //         return BadRequest();
 
-        //     return Ok(this.mapper.Map<Entities.Order>(orderFromRepo));
-        // }
-
-        [HttpGet("{orderId}")]
+        [HttpGet("{orderId}", Name = "getOrderById")]
         [RequestHeaderMatchesMediaType("Accept",
             new[] {"application/vnd.jose.order+json"})]
         public async Task<IActionResult> getOrderById(int orderId){
@@ -49,6 +42,23 @@ namespace TourCmdAPI.Controllers
             return await getSpecificOrderById<OrderWithItems>(orderId, true);
         }
 
+        [HttpPost]
+        [RequestHeaderMatchesMediaType("Content-Type",
+            new[] {"application/vnd.jose.orderforcreation+json"})]
+        public async Task<IActionResult> AddOrder([FromBody] OrderForCreation order){
+            if(order == null)
+                return BadRequest();
+            var orderEntity = mapper.Map<Entities.Order>(order);
+            await repo.AddOrder(orderEntity);
+           if (! await repo.SaveAsync())
+            throw new Exception("Adding order failed.");
+           var orderDto = mapper.Map<Order>(orderEntity); 
+           
+           return CreatedAtRoute("getOrderById",
+                new { orderId = orderDto.OrderId }, orderDto);
+        }
+
+
         private async Task<IActionResult> getSpecificOrderById<T>(int orderId, bool includeItems)
             where T : class{
                 var orderFromRepo = await this.repo.GetOrderById(orderId, includeItems);
@@ -61,5 +71,24 @@ namespace TourCmdAPI.Controllers
                 }
         }
 
+         [HttpPost]
+        [RequestHeaderMatchesMediaType("Content-Type",
+            new[] {"application/json",
+            "application/vnd.jose.orderitemcollectionforcreation+json"})]
+         public async Task<IActionResult> CreateOrderItemCollection(
+                [FromBody] IEnumerable<OrderItemForCreation> orderItemCollection)
+        {
+            if (orderItemCollection == null)
+                return BadRequest();
+            
+            var orderItemEntities = mapper.Map<IEnumerable<Entities.OrderItem>>(orderItemCollection);
+            foreach(var item in orderItemEntities){
+                await repo.AddOrderItem(item);
+            }
+            if(!await repo.SaveAsync()){
+                throw new Exception("Adding a collection of items failed on save.");
+            }
+            return Ok();
+        }
     }
 }

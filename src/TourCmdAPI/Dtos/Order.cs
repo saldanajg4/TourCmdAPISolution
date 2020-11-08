@@ -4,6 +4,6 @@ namespace TourCmdAPI.Dtos
     {
         public int OrderId { get; set; }
 
-        public string Employee { get; set; }
+        // public string Employee { get; set; }
     }
 }

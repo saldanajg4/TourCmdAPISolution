@@ -11,27 +11,26 @@ namespace TourCmdAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
+        public string CustomerName { get; set; }
+
     
         [Required]
         [MaxLength(200)]
         public string Description { get; set; }
 
+
         // [Required]
-        // public DateTimeOffset CreatedAt { get; set; }
+        // public int EmployeeId { get; set; }
 
-         [Required]
-        //  [ForeignKey("EmployeeId")]
-        public int EmployeeId { get; set; }
+        // [Required]
+        // public Employee Employee { get; set; }
+        // [Required]
+        // public int CustomerId { get; set; }
 
-        [Required]
-        public Employee Employee { get; set; }
-        [Required]
-        public int CustomerId { get; set; }
+        // [Required]
+        // public Customer Customer { get; set; }
 
-        [Required]
-        public Customer Customer { get; set; }
-
-        public ICollection<Item> Items { get; set; } = new List<Item>();
+        public ICollection<OrderItem> OrderItems { get; set; } 
 
     }
 }

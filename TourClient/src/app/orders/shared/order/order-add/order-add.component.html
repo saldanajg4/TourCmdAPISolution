@@ -1,1 +1,44 @@
-<p>order-add works!</p>
+<p-panel header="New Order">
+    <form novalidate (ngSubmit)="addOrder()" [formGroup]="orderForm">
+        <fieldset>
+
+            <div class="p-field p-grid" >
+                <!-- <label class="p-field p-col-12 p-md-2" for="Customer">Customer</label>
+                <p-dropdown class="p-field p-col-12 p-md-10" [options]="this.bandOptions" formControlName="band"
+                    id="bandId"></p-dropdown> -->
+            </div>
+            <div class="p-field p-grid" *ngIf="isAdmin">
+                <label class="p-field p-col-12 p-md-2" for="managerId">Manager</label>
+                <p-dropdown class="p-field p-col-12 p-md-10" [options]="this.managerOptions" formControlName="manager"
+                    id="managerId"></p-dropdown>
+            </div>
+            <div class="p-field p-grid">
+                <label class="p-field p-col-12 p-md-2" for="titleId">Customer</label>
+                <input class="p-field p-col-12 p-md-10" id="titleId" type="text" placeholder="Title" formControlName="customer" pInputText>
+            </div>
+            <div class="p-field p-grid">
+                <label class="p-field p-col-12 p-md-2" for="descriptionId">Description</label>
+                <textarea formControlName="description" class="p-field p-col-12 p-md-10" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+            </div>
+
+            <!-- <div>
+                <button pButton (click)="addShow()" label="Add Show" icon="pi pi-plus"  badge="8"></button>
+            </div>
+            <div>
+                <button pButton type="submit" label="Save" icon="pi pi-plus"  badge="8"></button>
+            </div>
+             -->
+            <!-- 
+            
+            <div class="p-field p-col-12 p-md-6">
+                <label for="titleId">Starts On</label>
+                <input id="startDateId" type="date" placeholder="Starts on" formControlName="startDate" pInputText>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="titleId">Ends On</label>
+                <input id="endDateId" type="date" placeholder="Ends on" formControlName="endDate" pInputText>
+            </div>  -->
+        </fieldset>
+    </form>
+
+</p-panel>

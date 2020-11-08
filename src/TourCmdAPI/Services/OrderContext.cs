@@ -27,13 +27,28 @@ namespace TourCmdAPI.Services
         public DbSet<Item> Items { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<IngredientCategory> IngredientCategories { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<PaymentDetail> PaymentDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<OrderItem>()
+                .HasKey(oi => new { oi.OrderId, oi. ItemId});
+            builder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId);
+            
+            builder.Entity<OrderItem>()
+                .HasOne(oi => oi.Item)
+                .WithMany(i => i.OrderItems)
+                .HasForeignKey(oi => oi.ItemId);
             // builder.Entity<IngredientCategory>()
             //     .HasIndex(i => i.IngredientCategoryName)
             //     .IsUnique();
+            // builder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentId, sc.CourseId});
         }
+
          public override Task<int> SaveChangesAsync(CancellationToken cancellationToken 
             = default(CancellationToken))
         {
@@ -46,7 +61,7 @@ namespace TourCmdAPI.Services
             {
                 var entity = entry.Entity as AuditableEntity;
 
-                if (entry.State == EntityState.Added)
+                if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
                 {
                     // entity.CreatedBy = _userInfoService.UserId;
                     entity.CreatedBy = "jose";

@@ -20,27 +20,40 @@ namespace TourCmdAPI.Repos
 
         public async Task<IEnumerable<Item>> GetItems()
         {
-            return await _context.Items.Include(item => item.Ingredients)
-            .ToListAsync();
+            // return await _context.Items.Include(item => item.Ingredients)
+            // .ToListAsync();
+             return await _context.Items.ToListAsync();
         }
 
         public async Task<Order> GetOrderById(int id, bool includeItems = false)
         {
+            // if (includeItems)
+            //     return await this._context.Orders.Include(o => o.Employee).Include(o => o.OrderItems)
+            //         .Where(o => o.OrderId == id).FirstOrDefaultAsync();
+            // else
+            //     return await this._context.Orders.Include(o => o.Employee)
+            //         .Where(o => o.OrderId == id).FirstOrDefaultAsync();
             if (includeItems)
-                return await this._context.Orders.Include(o => o.Employee).Include(o => o.Items)
+                return await this._context.Orders.Include(o => o.OrderItems)
                     .Where(o => o.OrderId == id).FirstOrDefaultAsync();
             else
-                return await this._context.Orders.Include(o => o.Employee)
+                return await this._context.Orders
                     .Where(o => o.OrderId == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Order>> GetOrders(bool includeItems = false)
         {
-            if(includeItems){
-                return await this._context.Orders.Include(o => o.Employee).Include(o => o.Items).ToListAsync();
+            // if(includeItems){
+            //     return await this._context.Orders.Include(o => o.Employee).Include(o => o.OrderItems).ToListAsync();
+            // }
+            // else{
+            //     return await this._context.Orders.Include(o => o.Employee).ToListAsync();
+            // }
+             if(includeItems){
+                return await this._context.Orders.Include(o => o.OrderItems).ToListAsync();
             }
             else{
-                return await this._context.Orders.Include(o => o.Employee).ToListAsync();
+                return await this._context.Orders.ToListAsync();
             }
         }
         public async Task AddItem(Item item){
@@ -130,6 +143,16 @@ namespace TourCmdAPI.Repos
         public async Task AddIngredient(Ingredient ingredient)
         {
             await this._context.AddAsync(ingredient);
+        }
+
+        public async Task AddOrder(Order order)
+        {
+            await this._context.AddAsync(order);
+        }
+
+        public async Task AddOrderItem(OrderItem item)
+        {
+            await this._context.AddAsync(item);
         }
     }
 }

@@ -21,14 +21,9 @@ namespace TourCmdAPI.Entities
         public decimal Price { get; set; }
 
         public decimal EstimatedCost { get; set; }
-        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+        // public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
-        //  [ForeignKey("OrderId")]
-        // public Order Order { get; set; }
-
-        // public int OrderId { get; set; }
-
-
+        public ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

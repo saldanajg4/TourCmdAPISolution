@@ -43,6 +43,11 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientCategoryComponent } from './ingredient-category/ingredient-category.component';
 import { IngredientService } from './ingredient/ingredient.service';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { PaymentDetailComponent } from './payment-details/payment-detail/payment-detail.component';
+import { PaymentDetailListComponent } from './payment-details/payment-detail-list/payment-detail-list.component';
+import { PaymentDetailService } from './payment-details/shared/payment-detail.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -64,6 +69,9 @@ import {MultiSelectModule} from 'primeng/multiselect';
     IngredientsComponent,
     IngredientComponent,
     IngredientCategoryComponent,
+    PaymentDetailsComponent,
+    PaymentDetailComponent,
+    PaymentDetailListComponent,
     
   ],
   imports: [
@@ -87,9 +95,10 @@ import {MultiSelectModule} from 'primeng/multiselect';
     CalendarModule,
     InputTextModule,
     MultiSelectModule,
+    ToastrModule.forRoot()
     
   ],
-  providers: [TourService,OrderService,TourMasterDataService, ItemService,IngredientService,
+  providers: [TourService,OrderService,TourMasterDataService, ItemService,IngredientService,PaymentDetailService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EnsureAcceptHeaderInterceptor,

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace TourCmdAPI.Migrations
 {
-    public partial class RemovedItemIngIngCat : Migration
+    public partial class PaymentDetailsadded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,37 +60,6 @@ namespace TourCmdAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
-                    UpdatedOn = table.Column<DateTime>(nullable: false),
-                    UpdatedBy = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(maxLength: 200, nullable: false),
-                    EmployeeId = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
@@ -103,18 +72,45 @@ namespace TourCmdAPI.Migrations
                     ItemName = table.Column<string>(maxLength: 200, nullable: false),
                     Description = table.Column<string>(maxLength: 2000, nullable: true),
                     Price = table.Column<decimal>(nullable: false),
-                    EstimatedCost = table.Column<decimal>(nullable: false),
-                    OrderId = table.Column<int>(nullable: true)
+                    EstimatedCost = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.ItemId);
-                    table.ForeignKey(
-                        name: "FK_Items_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: false),
+                    UpdatedOn = table.Column<DateTime>(nullable: false),
+                    UpdatedBy = table.Column<string>(nullable: true),
+                    CustomerName = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(maxLength: 200, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CardOwnerName = table.Column<string>(maxLength: 200, nullable: false),
+                    CardNumber = table.Column<string>(maxLength: 200, nullable: false),
+                    ExpirationDate = table.Column<string>(nullable: false),
+                    CVV = table.Column<string>(maxLength: 3, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentDetails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -128,8 +124,7 @@ namespace TourCmdAPI.Migrations
                     UpdatedOn = table.Column<DateTime>(nullable: false),
                     UpdatedBy = table.Column<string>(nullable: true),
                     IngredientName = table.Column<string>(nullable: true),
-                    IngredientCategoryId = table.Column<int>(nullable: false),
-                    ItemId = table.Column<int>(nullable: true)
+                    IngredientCategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,12 +135,31 @@ namespace TourCmdAPI.Migrations
                         principalTable: "IngredientCategories",
                         principalColumn: "IngredientCategoryId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false),
+                    ItemId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => new { x.OrderId, x.ItemId });
                     table.ForeignKey(
-                        name: "FK_Ingredients_Items_ItemId",
+                        name: "FK_OrderItems_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -154,30 +168,27 @@ namespace TourCmdAPI.Migrations
                 column: "IngredientCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_ItemId",
-                table: "Ingredients",
+                name: "IX_OrderItems_ItemId",
+                table: "OrderItems",
                 column: "ItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_OrderId",
-                table: "Items",
-                column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerId",
-                table: "Orders",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_EmployeeId",
-                table: "Orders",
-                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "Ingredients");
+
+            migrationBuilder.DropTable(
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "PaymentDetails");
 
             migrationBuilder.DropTable(
                 name: "IngredientCategories");
@@ -187,12 +198,6 @@ namespace TourCmdAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
         }
     }
 }

@@ -71,6 +71,10 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.ingredient+json");
                     jsonOutputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.allingredients+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.orderitemcollectionforcreation+json");
+                    jsonOutputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.paymentdetails+json");
                     
                 }
 
@@ -102,6 +106,12 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.ingredientcategoryforcreation+json");
                     jsonInputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.ingredientforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.orderforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.orderitemcollectionforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.paymentdetailsforcreation+json");
                 }
 
             });
@@ -119,9 +129,9 @@ namespace TourCmdAPI
             builder.Username = Configuration["UserID"];
             builder.Password = Configuration["Password"];
 
-            services.AddDbContext<TourContext>(opt => opt.UseNpgsql
-            (builder.ConnectionString)
-            );
+            services.AddDbContext<TourContext>(opt => opt.UseLazyLoadingProxies()
+            .UseNpgsql(builder.ConnectionString));
+            // services.AddDbContext<TourContext>(opt => opt.UseNpgsql(builder.ConnectionString));
 
             var orderBuilder = new NpgsqlConnectionStringBuilder();
             orderBuilder.ConnectionString = Configuration.GetConnectionString("OrderConnection");
@@ -135,6 +145,7 @@ namespace TourCmdAPI
             services.AddScoped<ITourRepository, TourRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<IPaymentDetailsRepository, PaymentDetailsRepository>();
              // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -166,35 +177,7 @@ namespace TourCmdAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            //  var config = new MapperConfiguration(config =>
-            // {
-            //     config.CreateMap<Entities.Tour, Dtos.Tour>()
-            //         .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
-
-                // config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfits>()
-                //    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
-
-                // config.CreateMap<Entities.Band, Dtos.Band>();
-                // config.CreateMap<Entities.Manager, Dtos.Manager>();
-                // config.CreateMap<Entities.Show, Dtos.Show>();
-
-                // config.CreateMap<Dtos.TourForCreation, Entities.Tour>();
-                // config.CreateMap<Dtos.TourWithManagerForCreation, Entities.Tour>();
-
-                // config.CreateMap<Entities.Tour, Dtos.TourWithShows>()
-                //    .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
-
-                // config.CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfitsAndShows>()
-                //     .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
-
-                // config.CreateMap<Dtos.TourWithShowsForCreation, Entities.Tour>();
-                // config.CreateMap<Dtos.TourWithManagerAndShowsForCreation, Entities.Tour>();
-                // config.CreateMap<Dtos.ShowForCreation, Entities.Show>();
-
-                // config.CreateMap<Entities.Tour, Dtos.TourForUpdate>().ReverseMap();
-
-            // });
-
+         
             app.UseHttpsRedirection();
             // Enable CORS
             // app.UseCors("AllowAllOriginsHeadersAndMethods");

@@ -3,4 +3,5 @@ import { TourWithEstimatedProfits } from './tour-with-estimated-profits.model';
 
 export class TourWithEstimatedProfitsAndShows extends TourWithEstimatedProfits{
     shows: Show[];
+  data: any;
 }

@@ -36,8 +36,9 @@ export class AppComponent {
               console.log(event);
               this.router.navigateByUrl('/ingredients');
             }},
-            {label: 'Social', icon: 'fa fa-fw fa-twitter', command: (event) =>{
+            {label: 'Payment', icon: 'fa fa-fw fa-twitter', command: (event) =>{
               console.log(event);
+              this.router.navigateByUrl('/pay-details');
             }}
         ];
     }

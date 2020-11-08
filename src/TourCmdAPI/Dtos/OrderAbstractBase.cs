@@ -12,7 +12,6 @@ namespace TourCmdAPI.Dtos
         [MaxLength(2000, ErrorMessage = "maxLength|Description is too long.")]
         public virtual string Description { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "required|The start date is required.")]
-        public DateTimeOffset CreatedAt { get; set; }
+
     }
 }

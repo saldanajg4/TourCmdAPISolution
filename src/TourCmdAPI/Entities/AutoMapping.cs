@@ -10,10 +10,6 @@ namespace TourCmdAPI.Entities
             CreateMap<Entities.Tour, Dtos.Tour>()
                 .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
 
-            
-        
-
-            
             CreateMap<Entities.Tour, Dtos.TourWithEstimatedProfits>()
                 .ForMember(d => d.Band, o => o.MapFrom(s => s.Band.Name));
             CreateMap<Entities.Band, Dtos.Band>();
@@ -36,10 +32,11 @@ namespace TourCmdAPI.Entities
 
             //mapping for Ordering for http get retrieving objects, because I get entities
             //from dbContext and send Dtos to client
-            CreateMap<Entities.Order, Dtos.Order>()
-                .ForMember(d => d.Employee, o => o.MapFrom(s => s.Employee.EmployeeName));
-            CreateMap<Entities.Order, Dtos.OrderWithItems>()
-                .ForMember(d => d.Employee, o => o.MapFrom(s => s.Employee.EmployeeName));
+            // CreateMap<Entities.Order, Dtos.Order>()
+            //     .ForMember(d => d.Employee, o => o.MapFrom(s => s.Employee.EmployeeName));
+            // CreateMap<Entities.Order, Dtos.OrderWithItems>()
+            //     .ForMember(d => d.Employee, o => o.MapFrom(s => s.Employee.EmployeeName));
+
             //this one is used after emp is created and sent Dtos back having empId and Name
             CreateMap<Entities.Employee, Dtos.Employee>();
             CreateMap<Entities.Item, Dtos.Item>();
@@ -49,6 +46,12 @@ namespace TourCmdAPI.Entities
             CreateMap<Entities.Ingredient, Dtos.Ingredient>()
                 .ForMember(d => d.IngredientCategory, o => o.MapFrom(s => s.IngredientCategory.IngredientCategoryName));
             CreateMap<Entities.IngredientCategory, Dtos.IngredientCategory>();
+            CreateMap<Entities.OrderItem,  Dtos.OrderItem>();
+             CreateMap<Entities.Order,  Dtos.OrderForCreation>();
+             CreateMap<Entities.Order, Dtos.Order>();
+             CreateMap<Entities.OrderItemForCreation, Dtos.OrderItemForCreation>();
+             CreateMap<Entities.PaymentDetail, Dtos.PaymentDetail>();
+             CreateMap<Entities.PaymentDetail, Dtos.PaymentDetailForCreation>();
             
             //mapping for Ordering for http post creating objects
             CreateMap<Dtos.EmployeeForCreation, Entities.Employee>();
@@ -58,6 +61,12 @@ namespace TourCmdAPI.Entities
             CreateMap<Dtos.IngredientCategoryForCreation, Entities.IngredientCategory>();
             CreateMap<Dtos.IngredientForCreation, Entities.Ingredient>();
             CreateMap<Dtos.IngredientCategory, Entities.IngredientCategory>();
+            CreateMap<Dtos.OrderItem,  Entities.OrderItem>();
+            CreateMap<Dtos.OrderForCreation,  Entities.Order>();
+            CreateMap<Dtos.OrderItemForCreation, Entities.OrderItem>();
+            CreateMap<Dtos.PaymentDetail, Entities.PaymentDetail>();
+            CreateMap<Dtos.PaymentDetailForCreation, Entities.PaymentDetail>();
+
         }
     }
 }

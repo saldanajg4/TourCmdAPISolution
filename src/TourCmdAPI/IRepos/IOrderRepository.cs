@@ -24,5 +24,7 @@ namespace TourCmdAPI.IRepos
          Task<IEnumerable<Ingredient>> GetAllIngredients();
          Task<Ingredient> GetIngredientById(int id);
          Task AddIngredient(Ingredient ingredient);
+        Task AddOrder(Order order);
+        Task AddOrderItem(OrderItem item);
     }
 }

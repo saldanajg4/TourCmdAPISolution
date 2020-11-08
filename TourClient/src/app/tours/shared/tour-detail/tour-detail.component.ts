@@ -29,8 +29,8 @@ export class TourDetailComponent implements OnInit, OnDestroy {
         if(this.isAdmin === true){
           this.tourSvc.getTourWithEstimatedProfitsAndShows(this.tourId).subscribe(
             t => {
-              this.tour = t;
-              this.shows = t.shows;
+              this.tour = t.data;
+              this.shows = t.data.shows;
               console.log(this.tour);
             }
           )
@@ -38,8 +38,8 @@ export class TourDetailComponent implements OnInit, OnDestroy {
         else{
           this.tourSvc.getTourWithShows(this.tourId).subscribe(
             t => {
-              this.tour = t;
-              this.shows = t.shows;
+              this.tour = t.data;
+              this.shows = t.data.shows;
               console.log(this.tour);
             })
         }
