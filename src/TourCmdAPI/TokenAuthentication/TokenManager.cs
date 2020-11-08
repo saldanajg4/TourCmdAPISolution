@@ -12,8 +12,8 @@ namespace TourCmdAPI.TokenAuthentication
         {
             tokenList = new List<Token>();
             tokenList.Add(new Token{
-        Value ="5ab36389-6610-459e-af42-0da7c3a68e8b",
-        ExpiryDate = Convert.ToDateTime("2020-11-06T12:45:26.0129295-06:00")
+        Value ="9fc3b99a-3df8-4522-8b52-313087afc69f",
+        ExpiryDate = Convert.ToDateTime("2020-11-10T12:45:26.0129295-06:00")
     });
         }
         public bool Authenticate(string userName, string password)

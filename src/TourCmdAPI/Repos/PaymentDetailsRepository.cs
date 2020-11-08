@@ -36,6 +36,11 @@ namespace TourCmdAPI.Repos
             return await _context.PaymentDetails.ToListAsync();
         }
 
+        public async Task<int> GetTotalOfPaymentDetails()
+        {
+            return await _context.PaymentDetails.CountAsync();
+        }
+
         public async Task PostPaymentDetail(PaymentDetail payment)
         {
             await _context.PaymentDetails.AddAsync(payment);

@@ -13,5 +13,6 @@ namespace TourCmdAPI.IRepos
         Task PostPaymentDetail(Entities.PaymentDetail payment);
         void DeletePaymentDetail(PaymentDetail payment);
         Task<bool> ExistsPaymentDetail(int id);
+        Task<int> GetTotalOfPaymentDetails();
     }
 }

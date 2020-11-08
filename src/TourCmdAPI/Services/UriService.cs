@@ -18,6 +18,7 @@ namespace TourCmdAPI.Services
             this.baseUri = baseUri;
 
         }
+        //building the uri string for next and previous pages
         public Uri GetPageUri(PaginationFilter filter, string route)
         {
             var endPointUri = new Uri(string.Concat(this.baseUri, route));
