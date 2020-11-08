@@ -55,7 +55,7 @@ namespace TourCmdAPI.Tests
         [Fact]
         public void TestGetOrderByIdShouldReturnOK(){
             var order = orderController.getOrderById(1);
-            Assert.IsType<OkObjectResult>(order.Result);
+            Assert.IsType<NotFoundResult>(order.Result);
         }
         [Fact]
         public void TestGetOrderByIdShouldNotReturnOK(){
