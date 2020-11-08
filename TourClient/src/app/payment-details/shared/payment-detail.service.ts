@@ -45,7 +45,7 @@ export class PaymentDetailService extends BaseService{
   }
 
   getPaymentDetails(): Observable<PaymentDetail[]>{
-    return this.http.get<PaymentDetail[]>(`${this.baseUrl}/payment?pageNumber=1&pageSize=1`,
+    return this.http.get<PaymentDetail[]>(`${this.baseUrl}/payment`,
     {headers: {'Accept': 'application/vnd.jose.paymentdetails+json'}});
   }
 

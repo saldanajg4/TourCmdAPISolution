@@ -16,7 +16,7 @@ import { TourData } from './tour-data.model';
 })
 export class TourService extends BaseService{
 
-  token = '5ab36389-6610-459e-af42-0da7c3a68e8b';
+  token = '9fc3b99a-3df8-4522-8b52-313087afc69f';
   constructor(private http: HttpClient) {
     super();
    }
