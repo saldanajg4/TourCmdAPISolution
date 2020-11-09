@@ -10,11 +10,13 @@ using TourCmdAPI.Helpers;
 using TourCmdAPI.Services;
 using TourCmdAPI.Filter;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.AspNetCore.Cors;
 
 namespace TourCmdAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAllTourOriginsHeadersAndMethods")]
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentDetailsRepository _repo;
@@ -57,13 +59,6 @@ namespace TourCmdAPI.Controllers
             IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
             var paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
             
-            // var route = Request.Path.Value;//this will get the /api/payment
-            // var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            // IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
-            // var paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
-            // var totalRecords = await this._repo.GetTotalOfPaymentDetails();
-            // var pagedResponse = PaginationHelper.CreatePagedReponse<IEnumerable<Dtos.PaymentDetail>>
-            //     (paymentDetailDto, validFilter, totalRecords, _uriService, route);
             return Ok(paymentDetailDto);
         }
 
