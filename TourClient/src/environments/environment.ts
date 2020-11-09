@@ -7,8 +7,8 @@
 export const environment = {
   production: false,
   // baseUrl: 'https://localhost:4200/api'//this is used in case accessing a proxy
-  // baseUrl: 'https://localhost:5001/api'
-  baseUrl: 'https://demoapiapp.azurewebsites.net/api'
+  baseUrl: 'https://localhost:5001/api'
+  // baseUrl: 'https://demoapiapp.azurewebsites.net/api'
 };
 
 /*

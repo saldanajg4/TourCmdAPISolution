@@ -21,21 +21,21 @@ namespace TourCmdAPI
             // migrate & seed the database.  Best practice = in Main, using service scope
             using (var scope = host.Services.CreateScope())
             {
-                try
-                {
-                    var context = scope.ServiceProvider.GetService<TourContext>();
-                    context.Database.Migrate();
-                    context.EnsureSeedDataForContext();
+                // try
+                // {
+                //     var context = scope.ServiceProvider.GetService<TourContext>();
+                //     context.Database.Migrate();
+                //     context.EnsureSeedDataForContext();
 
-                    var orderContext = scope.ServiceProvider.GetService<OrderContext>();
-                    orderContext.Database.Migrate();
-                    orderContext.EnsureSeedDataForOrderContext();
-                }
-                catch (System.Exception ex)
-                {
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred with migrating or seeding the DB.");
-                }     
+                //     var orderContext = scope.ServiceProvider.GetService<OrderContext>();
+                //     orderContext.Database.Migrate();
+                //     orderContext.EnsureSeedDataForOrderContext();
+                // }
+                // catch (System.Exception ex)
+                // {
+                //     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                //     logger.LogError(ex, "An error occurred with migrating or seeding the DB.");
+                // }     
                
             }
 

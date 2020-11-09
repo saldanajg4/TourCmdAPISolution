@@ -29,41 +29,43 @@ namespace TourCmdAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        [RequestHeaderMatchesMediaType("Accept",
-            new[] { "application/vnd.jose.paymentdetails+json" })]
-        public async Task<IActionResult> GetPaymentDetails()
-        {
-            var pdCached = "paymentDetailsList";
-            if(!_memoryCache.TryGetValue(pdCached, out IEnumerable<Dtos.PaymentDetail> paymentDetailDto)){
-                IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
-                paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
-                var cacheExpiryOptions = new MemoryCacheEntryOptions
-            {
-                AbsoluteExpiration = DateTime.Now.AddMinutes(3),
-                Priority = CacheItemPriority.High,
-                SlidingExpiration = TimeSpan.FromSeconds(8)
-            };
-            _memoryCache.Set(pdCached, paymentDetailDto, cacheExpiryOptions);
-            }
-            
-            return Ok(paymentDetailDto);
-        }
-
         // [HttpGet]
         // [RequestHeaderMatchesMediaType("Accept",
         //     new[] { "application/vnd.jose.paymentdetails+json" })]
-        // public async Task<IActionResult> GetPaymentDetails([FromQuery] PaginationFilter filter)
+        // public async Task<IActionResult> GetPaymentDetails()
         // {
-        //     var route = Request.Path.Value;//this will get the /api/payment
-        //     var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-        //     IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails(validFilter.PageNumber, validFilter.PageSize);
-        //     var paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
-        //     var totalRecords = await this._repo.GetTotalOfPaymentDetails();
-        //     var pagedResponse = PaginationHelper.CreatePagedReponse<IEnumerable<Dtos.PaymentDetail>>
-        //         (paymentDetailDto, validFilter, totalRecords, _uriService, route);
-        //     return Ok(pagedResponse);
+        //     var pdCached = "paymentDetailsList";
+        //     if(!_memoryCache.TryGetValue(pdCached, out IEnumerable<Dtos.PaymentDetail> paymentDetailDto)){
+        //         IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
+        //         paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
+        //         var cacheExpiryOptions = new MemoryCacheEntryOptions
+        //     {
+        //         AbsoluteExpiration = DateTime.Now.AddMinutes(3),
+        //         Priority = CacheItemPriority.High,
+        //         SlidingExpiration = TimeSpan.FromMilliseconds(8)
+        //     };
+        //     _memoryCache.Set(pdCached, paymentDetailDto, cacheExpiryOptions);
+        //     }
+            
+        //     return Ok(paymentDetailDto);
         // }
+
+        [HttpGet]
+        [RequestHeaderMatchesMediaType("Accept",
+            new[] { "application/vnd.jose.paymentdetails+json" })]
+        public async Task<IActionResult> GetPaymentDetails() {
+            IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
+            var paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
+            
+            // var route = Request.Path.Value;//this will get the /api/payment
+            // var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            // IEnumerable<Entities.PaymentDetail> paymentEntity = await this._repo.GetPaymentDetails();
+            // var paymentDetailDto = this._mapper.Map<IEnumerable<Dtos.PaymentDetail>>(paymentEntity);
+            // var totalRecords = await this._repo.GetTotalOfPaymentDetails();
+            // var pagedResponse = PaginationHelper.CreatePagedReponse<IEnumerable<Dtos.PaymentDetail>>
+            //     (paymentDetailDto, validFilter, totalRecords, _uriService, route);
+            return Ok(paymentDetailDto);
+        }
 
 
         [HttpGet("{Id}", Name = "GetPaymentDetailsById")]
