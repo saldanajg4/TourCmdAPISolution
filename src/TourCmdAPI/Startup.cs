@@ -119,8 +119,8 @@ namespace TourCmdAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
-                    // builder => builder.WithOrigins("https://localhost:4200")
-                    builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net")
+                    builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
+                                                    "https://localhost:4200")
                                                     .AllowAnyHeader()
                                                     .AllowAnyMethod());
             });
