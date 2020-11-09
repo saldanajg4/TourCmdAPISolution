@@ -13,15 +13,15 @@ export class PaymentDetailListComponent implements OnInit {
 
   constructor(public pdService: PaymentDetailService, private toastSvc: ToastrService) { }
 
+  //this.pdService.paymentDetailsList gets updated every time the list is updated.
+  //BehaviorSubject used as observables
   ngOnInit(): void {
     this.pdService.getPaymentDetails().subscribe(
       (data) => {
         this.pdService.updatePdDataSources(data);
         this.pdService.pdData.subscribe(data => {
-          // this.pdList = data;
           this.pdService.paymentDetailsList = data;
         })
-        // this.pdService.pdData.subscribe(data => this.pdService.paymentDetailsList = data);
       }
     )
   }
@@ -39,12 +39,12 @@ export class PaymentDetailListComponent implements OnInit {
   }
   populateForm(pd: PaymentDetail){
     this.pdService.formData = Object.assign({}, pd);
-    this.pdService.updatePdDataSource(this.pdService.formData);
-    console.log('thisformdata: ' );
-    console.log(this.pdService.formData);
+    // this.pdService.updatePdDataSource(this.pdService.formData);
+    // console.log('thisformdata: ' );
+    // console.log(this.pdService.formData);
 
-    console.log('pdToUpdate as observable: ' );
-    this.pdService.pdToUpdate.subscribe(data => console.log(data));
+    // console.log('pdToUpdate as observable: ' );
+    // this.pdService.pdToUpdate.subscribe(data => console.log(data));
   }
 
 }

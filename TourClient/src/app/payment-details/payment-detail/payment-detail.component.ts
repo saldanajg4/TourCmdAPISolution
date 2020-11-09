@@ -16,8 +16,6 @@ export class PaymentDetailComponent implements OnInit {
   }
   //the form value contains the PaymentDetail object model to be sent to webapi
   onSubmit(form: NgForm) {
-    console.log('the form');
-    console.log(this.service.formData.id);
     if(this.service.formData.id > 0){
       this.patch(form);
     } 
@@ -36,6 +34,8 @@ export class PaymentDetailComponent implements OnInit {
       cvv: ''
     }
   }
+    //this.pdService.paymentDetailsList will be updated when 
+  // this.service.updatePdDataSources(data) is called
   private insert(form: NgForm) {
     
     this.service.postPaymentDetails(form.value).subscribe(
