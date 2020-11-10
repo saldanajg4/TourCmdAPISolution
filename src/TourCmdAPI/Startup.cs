@@ -120,7 +120,8 @@ namespace TourCmdAPI
             {
                 options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
                     builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
-                                                    "https://localhost:4200")
+                                                    "https://localhost:4200",
+                                                    "https://paymentappapi.azurewebsites.net")
                                                     .AllowAnyHeader()
                                                     .AllowAnyMethod());
             });
