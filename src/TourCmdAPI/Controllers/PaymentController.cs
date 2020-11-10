@@ -22,6 +22,7 @@ namespace TourCmdAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IUriServices _uriService;
         private readonly IMemoryCache _memoryCache;
+        //memory cache to be used in static data
         public PaymentController(IPaymentDetailsRepository repo, IMapper mapper, IUriServices uriService, IMemoryCache memoryCache)
         {
             _memoryCache = memoryCache;
