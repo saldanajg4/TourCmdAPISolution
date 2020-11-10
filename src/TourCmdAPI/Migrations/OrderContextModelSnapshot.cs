@@ -263,8 +263,8 @@ namespace TourCmdAPI.Migrations
 
                     b.Property<string>("CardOwnerName")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("character varying(70)")
+                        .HasMaxLength(70);
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
