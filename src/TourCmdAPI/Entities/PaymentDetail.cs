@@ -9,7 +9,7 @@ namespace TourCmdAPI.Entities
          [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [MaxLength(200)]
+        [MaxLength(70)]
         public string CardOwnerName { get; set; }
         [Required]
         [MaxLength(200)]
