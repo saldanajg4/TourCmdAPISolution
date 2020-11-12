@@ -16,6 +16,7 @@ namespace TourCmdAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowOrigin")]  
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentDetailsRepository _repo;

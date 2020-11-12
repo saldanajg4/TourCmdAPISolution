@@ -115,15 +115,19 @@ namespace TourCmdAPI
                 }
 
             });
- 
-            services.AddCors(options =>
+
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
+            //         // builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
+            //         builder => builder.WithOrigins("https://localhost:4200",
+            //                                         "https://paymentappapi.azurewebsites.net")
+            //                                         .AllowAnyHeader()
+            //                                         .AllowAnyMethod());
+            // });
+            services.AddCors(c =>
             {
-                options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
-                    // builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
-                    builder => builder.WithOrigins("https://localhost:4200",
-                                                    "https://paymentappapi.azurewebsites.net")
-                                                    .AllowAnyHeader()
-                                                    .AllowAnyMethod());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             });
 
             var builder = new NpgsqlConnectionStringBuilder();
