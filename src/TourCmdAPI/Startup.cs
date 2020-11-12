@@ -188,7 +188,8 @@ namespace TourCmdAPI
             
             // Enable CORS
             // app.UseCors("AllowAllOriginsHeadersAndMethods");
-            app.UseCors("AllowAllTourOriginsHeadersAndMethods");
+            // app.UseCors("AllowAllTourOriginsHeadersAndMethods");
+            app.UseCors("AllowOrigin");
             app.UseHttpsRedirection();
             
             app.UseRouting();
