@@ -116,18 +116,14 @@ namespace TourCmdAPI
 
             });
 
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
-            //         // builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
-            //         builder => builder.WithOrigins("https://localhost:4200",
-            //                                         "https://paymentappapi.azurewebsites.net")
-            //                                         .AllowAnyHeader()
-            //                                         .AllowAnyMethod());
-            // });
-            services.AddCors(c =>
+            services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                options.AddPolicy("AllowAllTourOriginsHeadersAndMethods",
+                    // builder => builder.WithOrigins("https://demoapiapp.azurewebsites.net",
+                    builder => builder.WithOrigins("https://localhost:4200")
+                                                    // "https://paymentappapi.azurewebsites.net")
+                                                    .AllowAnyHeader()
+                                                    .AllowAnyMethod());
             });
 
             var builder = new NpgsqlConnectionStringBuilder();
@@ -188,8 +184,8 @@ namespace TourCmdAPI
             
             // Enable CORS
             // app.UseCors("AllowAllOriginsHeadersAndMethods");
-            // app.UseCors("AllowAllTourOriginsHeadersAndMethods");
-            app.UseCors("AllowOrigin");
+            app.UseCors("AllowAllTourOriginsHeadersAndMethods");
+     
             app.UseHttpsRedirection();
             
             app.UseRouting();
