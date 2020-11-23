@@ -34,15 +34,16 @@ namespace TourCmdAPI.Services
         {
             builder.Entity<OrderItem>()
                 .HasKey(oi => new { oi.OrderId, oi. ItemId});
-            builder.Entity<OrderItem>()
-                .HasOne(oi => oi.Order)
-                .WithMany(o => o.OrderItems)
-                .HasForeignKey(oi => oi.OrderId);
+            // builder.Entity<OrderItem>()
+            //     .HasOne(oi => oi.Order)
+            //     .WithMany(o => o.OrderItems)
+            //     .HasForeignKey(oi => oi.OrderId);
             
-            builder.Entity<OrderItem>()
-                .HasOne(oi => oi.Item)
-                .WithMany(i => i.OrderItems)
-                .HasForeignKey(oi => oi.ItemId);
+            // builder.Entity<OrderItem>()
+            //     .HasOne(oi => oi.Item)
+            //     .WithMany(i => i.OrderItems)
+            //     .HasForeignKey(oi => oi.ItemId);
+
             // builder.Entity<IngredientCategory>()
             //     .HasIndex(i => i.IngredientCategoryName)
             //     .IsUnique();

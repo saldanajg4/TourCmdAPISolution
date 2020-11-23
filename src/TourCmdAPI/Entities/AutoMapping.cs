@@ -1,3 +1,4 @@
+using System.Linq;
 using AutoMapper;
 
 namespace TourCmdAPI.Entities
@@ -52,6 +53,12 @@ namespace TourCmdAPI.Entities
              CreateMap<Entities.OrderItemForCreation, Dtos.OrderItemForCreation>();
              CreateMap<Entities.PaymentDetail, Dtos.PaymentDetail>();
              CreateMap<Entities.PaymentDetail, Dtos.PaymentDetailForCreation>();
+             CreateMap<Entities.OrderItem, Dtos.OrderItem>();
+             CreateMap<Entities.Order, Dtos.Order>()
+                .ForMember(dto => dto.Items, 
+                opt => opt.MapFrom(child => child.OrderItems
+                    .Select(grandChild => grandChild.Item).ToList()));
+
             
             //mapping for Ordering for http post creating objects
             CreateMap<Dtos.EmployeeForCreation, Entities.Employee>();

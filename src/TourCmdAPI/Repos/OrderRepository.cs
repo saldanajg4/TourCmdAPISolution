@@ -50,7 +50,10 @@ namespace TourCmdAPI.Repos
             //     return await this._context.Orders.Include(o => o.Employee).ToListAsync();
             // }
              if(includeItems){
-                return await this._context.Orders.Include(o => o.OrderItems).ToListAsync();
+                return await this._context.Orders
+                    .Include(o => o.OrderItems)
+                        .ThenInclude(i => i.Item)
+                    .ToListAsync();
             }
             else{
                 return await this._context.Orders.ToListAsync();
@@ -152,7 +155,7 @@ namespace TourCmdAPI.Repos
 
         public async Task AddOrderItem(OrderItem item)
         {
-            await this._context.AddAsync(item);
+            await this._context.OrderItems.AddAsync(item);
         }
     }
 }

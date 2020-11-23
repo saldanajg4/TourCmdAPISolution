@@ -23,8 +23,9 @@ namespace TourCmdAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> getOrders(){
-            IEnumerable<Entities.Order> ordersFromRepo = (IEnumerable<Entities.Order>)await this.repo.GetOrders();
-            var orders = this.mapper.Map<IEnumerable<Entities.Order>>(ordersFromRepo);
+            IEnumerable<Entities.Order> ordersFromRepo = (IEnumerable<Entities.Order>)
+                await this.repo.GetOrders(true);
+            IEnumerable<Dtos.Order> orders = this.mapper.Map<IEnumerable<Dtos.Order>>(ordersFromRepo);
             return Ok(orders);
         }
 
@@ -56,6 +57,25 @@ namespace TourCmdAPI.Controllers
            
            return CreatedAtRoute("getOrderById",
                 new { orderId = orderDto.OrderId }, orderDto);
+        }
+        [HttpPost("orderitem")]
+        [RequestHeaderMatchesMediaType("Content-Type",
+            new[] {"application/vnd.jose.orderitemforcreation+json"})]
+        public async Task<IActionResult> AddOrderItem([FromBody] OrderItemForCreation orderItemForCreation){
+            Entities.Order order = await repo.GetOrderById(orderItemForCreation.OrderId);
+            Entities.Item item = await repo.GetItemById(orderItemForCreation.ItemId);
+            var orderItem = new Entities.OrderItem{
+                Order = order,
+                Item = item,
+                Quantity = orderItemForCreation.Quantity
+            };
+            if(order == null)
+                return BadRequest();
+            await repo.AddOrderItem(orderItem);
+            if(! await repo.SaveAsync())
+                throw new Exception("Adding item in order failed.");
+
+            return Ok();
         }
 
 

@@ -30,6 +30,7 @@ namespace TourCmdAPI.Entities
         // [Required]
         // public Customer Customer { get; set; }
 
+      
         public ICollection<OrderItem> OrderItems { get; set; } 
 
     }

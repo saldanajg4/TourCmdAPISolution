@@ -32,7 +32,9 @@ namespace TourCmdAPI
         {
             services.AddMvc(setupAction =>
             {
+                
                 setupAction.ReturnHttpNotAcceptable = true;
+
 
                 var jsonOutputFormatter = setupAction.OutputFormatters
                     .OfType<SystemTextJsonOutputFormatter>().FirstOrDefault();
@@ -112,9 +114,15 @@ namespace TourCmdAPI
                     .Add("application/vnd.jose.orderitemcollectionforcreation+json");
                     jsonInputFormatter.SupportedMediaTypes
                     .Add("application/vnd.jose.paymentdetailsforcreation+json");
+                    jsonInputFormatter.SupportedMediaTypes
+                    .Add("application/vnd.jose.orderitemforcreation+json");
                 }
 
             });
+            // .AddNewtonsoftJson(
+            //     options => options.SerializerSettings.ReferenceLoopHandling = 
+            //         Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            // );
 
             services.AddCors(options =>
             {

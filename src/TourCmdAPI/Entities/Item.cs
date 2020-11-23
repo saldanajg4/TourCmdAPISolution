@@ -22,7 +22,7 @@ namespace TourCmdAPI.Entities
 
         public decimal EstimatedCost { get; set; }
         // public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
-
+    
         public ICollection<OrderItem> OrderItems { get; set; }
 
     }

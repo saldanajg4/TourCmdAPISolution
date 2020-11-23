@@ -55,91 +55,51 @@ namespace TourCmdAPI.Services
             };
 
 
-            // var orders = new List<Order>()
-            // {
-            //     new Order()
-            //     {
-            //         CustomerId = 2,
-            //         Description = "Llega a las 11am",
-            //          CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow,
-            //         EmployeeId = 1,
-            //         Items = new List<Item>()
-            //         {
-            //             new Item() {
-            //                 ItemName = "Huarache",
-            //                 Description = "Chicharron",
-            //                 Price = 10,
-            //                  CreatedBy = "system",
-            //                 CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Quesadilla",
-            //                 Description = "Veggies",
-            //                 Price = 10,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Menudo",
-            //                 Description = "Grande",
-            //                 Price = 9,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Agua",
-            //                 Description = "Chica",
-            //                 Price = 2,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             }
-            //         }
-            //     },                        
-            //     new Order()
-            //     {
-            //         CustomerId = 1,
-            //         Description = "Llega a las 12pm",
-            //         EmployeeId = 2,
-            //          CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow,
-            //         Items = new List<Item>()
-            //         {
-            //             new Item() {
-            //                 ItemName = "Quesadilla",
-            //                 Description = "Champinon",
-            //                 Price = 10,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Fish Dinner Plate",
-            //                 Description = "Filetes de mojarra",
-            //                 Price = 12,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Ceviche",
-            //                 Description = "Grande",
-            //                 Price = 15,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             },
-            //             new Item() {
-            //                 ItemName = "Tostada Regia",
-            //                 Description = "To Go",
-            //                 Price = 8,
-            //                  CreatedBy = "system",
-            //         CreatedOn = DateTime.UtcNow
-            //             }
-            //         }
-            //     }
-            // };
-            //  context.Employees.AddRange(emps);
-            //  context.Customers.AddRange(customers);
-            // context.Orders.AddRange(orders);
-            
+            var orders = new List<Order>()
+            {                     
+                new Order()
+                {
+                    CustomerName = "Pablo",
+                    Description = "Llega a las 12pm",
+                     CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow,
+                }
+            };
+            var Items = new List<Item>()
+                    {
+                        new Item() {
+                            ItemName = "Quesadilla",
+                            Description = "Champinon",
+                            Price = 10,
+                             CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                        },
+                        new Item() {
+                            ItemName = "Fish Dinner Plate",
+                            Description = "Filetes de mojarra",
+                            Price = 12,
+                             CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                        },
+                        new Item() {
+                            ItemName = "Ceviche",
+                            Description = "Grande",
+                            Price = 15,
+                             CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                        },
+                        new Item() {
+                            ItemName = "Tostada Regia",
+                            Description = "To Go",
+                            Price = 8,
+                             CreatedBy = "system",
+                    CreatedOn = DateTime.UtcNow
+                        }
+                    };
+             context.Employees.AddRange(emps);
+             context.Customers.AddRange(customers);
+            context.Orders.AddRange(orders);
+            context.Items.AddRange(Items);
             
             context.SaveChanges();
         }
