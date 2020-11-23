@@ -28,14 +28,14 @@ namespace TourCmdAPI.Entities{
         public Guid BandId { get; set; }
 
         [Required]
-        public Band Band { get; set; }
+        public virtual Band Band { get; set; }
 
         public Guid ManagerId { get; set; }
 
         [ForeignKey("ManagerId")]
-        public Manager Manager { get; set; }
+        public virtual Manager Manager { get; set; }
 
-        public ICollection<Show> Shows { get; set; } = new List<Show>();
+        public virtual ICollection<Show> Shows { get; set; } = new List<Show>();
 
     }
 }

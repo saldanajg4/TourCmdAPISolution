@@ -1,0 +1,21 @@
+<div *ngIf="order && order.employee">
+    <p-panel header="{{order.customerName}}, order# {{order.orderId}}">
+        <div *ngIf="order">
+            <p-card>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-2">Description:</div>
+                    <div class="p-col-12 p-md-10">{{order.description}}</div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-2">Start Date:</div>
+                    <div class="p-col-12 p-md-10">{{order.createdAt|date: 'short'}}</div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-2">Total:</div>
+                    <div class="p-col-12 p-md-10">{{this.total|currency}}</div>
+                </div>
+            </p-card>
+        </div>
+        <app-items *ngIf="this.order.items" [items]="this.order.items"></app-items> 
+    </p-panel>
+</div>

@@ -6,5 +6,6 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'https://tourangular.azurewebsites.net/api'
+  // baseUrl: 'https://tourangular.azurewebsites.net/api'
+  baseUrl: 'https://demoapiapp.azurewebsites.net/api'
 };

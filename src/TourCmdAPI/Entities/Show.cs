@@ -27,7 +27,7 @@ namespace TourCmdAPI.Entities
         public string Country { get; set; }
 
         [ForeignKey("TourId")]
-        public Tour Tour { get; set; }
+        public virtual Tour Tour { get; set; }
 
         public Guid TourId { get; set; }
     }
