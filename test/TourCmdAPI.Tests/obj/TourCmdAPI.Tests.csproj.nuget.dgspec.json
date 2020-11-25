@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {}
+    "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {}
   },
   "projects": {
-    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
+    "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
+        "projectUniqueName": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
         "projectName": "TourCmdAPI",
-        "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\obj\\",
+        "projectPath": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj",
+        "packagesPath": "C:\\Users\\salda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\salda\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -43,6 +40,10 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "Json.Net": {
+              "target": "Package",
+              "version": "[1.0.23, )"
+            },
             "Microsoft.AspNetCore.Hosting": {
               "target": "Package",
               "version": "[2.2.7, )"
@@ -50,6 +51,10 @@
             "Microsoft.AspNetCore.Mvc.Formatters.Json": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -72,6 +77,10 @@
             "MySql.Data.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.21, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -100,24 +109,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {
+    "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
         "projectName": "TourCmdAPI.Tests",
-        "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\obj\\",
+        "projectPath": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\TourCmdAPI.Tests.csproj",
+        "packagesPath": "C:\\Users\\salda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\test\\TourCmdAPI.Tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\salda\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -128,8 +134,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
-                "projectPath": "d:\\users\\gabriel\\vsprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj"
+              "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj": {
+                "projectPath": "C:\\Users\\salda\\vscodeprojects\\TourCmdAPISolution\\src\\TourCmdAPI\\TourCmdAPI.csproj"
               }
             }
           }
@@ -179,7 +185,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

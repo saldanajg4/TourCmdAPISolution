@@ -5,7 +5,7 @@ namespace TourCmdAPI.Dtos
 {
     public class OrderWithItems : Order
     {
-        public ICollection<Item> Items { get; set; }
-            = new List<Item>();
+        // public ICollection<Item> Items { get; set; }
+            // = new List<Item>();
     }
 }

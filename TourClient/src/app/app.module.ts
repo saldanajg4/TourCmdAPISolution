@@ -48,6 +48,10 @@ import { PaymentDetailComponent } from './payment-details/payment-detail/payment
 import { PaymentDetailListComponent } from './payment-details/payment-detail-list/payment-detail-list.component';
 import { PaymentDetailService } from './payment-details/shared/payment-detail.service';
 import { ToastrModule } from 'ngx-toastr';
+import {NgReduxModule, NgRedux} from 'ng2-redux';
+import { IAppState } from './store/IAppState';
+import { store } from './store/store';
+import { PaymentDetailActions } from './payment-details/shared/payment-detail.actions';
 
 
 @NgModule({
@@ -95,10 +99,14 @@ import { ToastrModule } from 'ngx-toastr';
     CalendarModule,
     InputTextModule,
     MultiSelectModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgReduxModule,
     
   ],
-  providers: [TourService,OrderService,TourMasterDataService, ItemService,IngredientService,PaymentDetailService,
+  providers: [TourService,OrderService,
+    TourMasterDataService, ItemService,
+    IngredientService,PaymentDetailService,
+    PaymentDetailActions,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EnsureAcceptHeaderInterceptor,
@@ -112,7 +120,8 @@ export class AppModule {
    *
    */
 
-  constructor() {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.provideStore(store);
     automapper.createMap('TourFormModel', 'TourForCreation')
       .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) =>
       {opts.ignore();})//because I don't need these two to create tour

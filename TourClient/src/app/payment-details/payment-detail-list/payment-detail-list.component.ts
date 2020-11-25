@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux,select } from 'ng2-redux';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { IAppState } from 'src/app/store/IAppState';
+import { PaymentDetailActions } from '../shared/payment-detail.actions';
 import { PaymentDetail } from '../shared/payment-detail.model';
 import { PaymentDetailService } from '../shared/payment-detail.service';
 
@@ -9,21 +13,28 @@ import { PaymentDetailService } from '../shared/payment-detail.service';
   styleUrls: ['./payment-detail-list.component.css']
 })
 export class PaymentDetailListComponent implements OnInit {
-  pdList: PaymentDetail[];
+  // pdList: PaymentDetail[];
+  @select('paymentDetails') paymentDetails$: Observable<PaymentDetail>
 
-  constructor(public pdService: PaymentDetailService, private toastSvc: ToastrService) { }
+  // constructor(public pdService: PaymentDetailService, private toastSvc: ToastrService) { }
+  constructor(private toastSvc: ToastrService, 
+    private ngRedux: NgRedux<IAppState>,
+    private paymentActions: PaymentDetailActions,
+    private pdService: PaymentDetailService) { }
 
   //this.pdService.paymentDetailsList gets updated every time the list is updated.
   //BehaviorSubject used as observables
   ngOnInit(): void {
-    this.pdService.getPaymentDetails().subscribe(
-      (data) => {
-        this.pdService.updatePdDataSources(data);
-        this.pdService.pdData.subscribe(data => {
-          this.pdService.paymentDetailsList = data;
-        })
-      }
-    )
+    // this.pdService.getPaymentDetails().subscribe(
+    //   (data) => {
+    //     this.pdService.updatePdDataSources(data);
+    //     this.pdService.pdData.subscribe(data => {
+    //       this.pdService.paymentDetailsList = data;
+    //     })
+    //   }
+    // )
+    this.paymentActions.getPaymentDetails();
+    // componentHandler.upgradeDom();
   }
 
   onDelete(id:number){
