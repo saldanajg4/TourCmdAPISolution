@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PaymentDetailService } from '../shared/payment-detail.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgRedux } from 'ng2-redux';
+import { IAppState } from 'src/app/store/IAppState';
+import { Observable } from 'rxjs';
+import { PaymentDetail } from '../shared/payment-detail.model';
+import { PaymentDetailActions } from '../shared/payment-detail.actions';
 
 @Component({
   selector: 'app-payment-detail',
@@ -10,17 +15,24 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentDetailComponent implements OnInit {
 
-  constructor(public service: PaymentDetailService, private toastSvc: ToastrService) { }
+  constructor(public service: PaymentDetailService, private toastSvc: ToastrService,
+      private ngRedux: NgRedux<IAppState>,
+      private paymentActions: PaymentDetailActions) { }
+    
 
   ngOnInit(): void {
   }
   //the form value contains the PaymentDetail object model to be sent to webapi
   onSubmit(form: NgForm) {
     if(this.service.formData.id > 0){
-      this.patch(form);
+      // this.patch(form);
+      this.paymentActions.updatePaymentDetail(this.service.formData.id);
+
     } 
     else  {
-      this.insert(form);
+      // this.insert(form);
+      
+      this.paymentActions.insertPaymentDetail(form);
     }
   }
   resetForm(form?: NgForm) {
@@ -34,36 +46,5 @@ export class PaymentDetailComponent implements OnInit {
       cvv: ''
     }
   }
-    //this.pdService.paymentDetailsList will be updated when 
-  // this.service.updatePdDataSources(data) is called
-  private insert(form: NgForm) {
-    
-    this.service.postPaymentDetails(form.value).subscribe(
-      (data) => {
-        this.toastSvc.success('card added.');
-        this.resetForm(form);
-        this.service.getPaymentDetails().subscribe(
-          (data) => {
-            this.service.updatePdDataSources(data);
-          }
-        );
-      },
-      (err) => this.toastSvc.error('Error adding card.')
-    );
-  }
 
-  private patch(form: NgForm) {
-    this.service.patchPaymentDetails().subscribe(
-      (data) => {
-        this.toastSvc.success('card updated.');
-        this.resetForm(form);
-        this.service.getPaymentDetails().subscribe(
-          (data) => {
-            this.service.updatePdDataSources(data);
-          }
-        );
-      },
-      (err) => this.toastSvc.error('Error updating card.')
-    );
-  }
 }

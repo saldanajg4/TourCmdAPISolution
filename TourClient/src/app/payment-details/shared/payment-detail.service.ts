@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BaseService } from 'src/app/shared/base.service';
 import { PaymentDetail } from './payment-detail.model';
@@ -57,6 +58,19 @@ export class PaymentDetailService extends BaseService{
   patchPaymentDetails(): Observable<PaymentDetail>{
     return this.http.patch<PaymentDetail>(`${this.baseUrl}/payment/${this.formData.id}`,
     this.formData);
+  }
+
+  resetForm(form?: NgForm) {
+    console.log('reseting the form');
+    if (form != null)
+      form.form.reset();
+    this.formData = {
+      id: 0,
+      cardOwnerName: '',
+      cardNumber: '',
+      expirationDate: '',
+      cvv: ''
+    }
   }
 
   // addTour(tourToAdd: TourForCreation): Observable<Tour>{

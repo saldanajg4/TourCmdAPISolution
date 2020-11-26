@@ -39,13 +39,14 @@ export class PaymentDetailListComponent implements OnInit {
 
   onDelete(id:number){
     if (confirm('Are you sure to delete this record ?')) {
-    this.pdService.deletePaymentDetails(id).subscribe(
-      (data) => {
-        this.toastSvc.warning('Record Deleted.');
-        this.pdService.getPaymentDetails().subscribe(data => this.pdService.paymentDetailsList = data);
-      },
-      (err) => this.toastSvc.error('Error deleting record. ' + err)
-    )
+      this.paymentActions.deletePaymentDetail(id);
+    // this.pdService.deletePaymentDetails(id).subscribe(
+    //   (data) => {
+    //     this.toastSvc.warning('Record Deleted.');
+    //     this.pdService.getPaymentDetails().subscribe(data => this.pdService.paymentDetailsList = data);
+    //   },
+    //   (err) => this.toastSvc.error('Error deleting record. ' + err)
+    // )
     }
   }
   populateForm(pd: PaymentDetail){
