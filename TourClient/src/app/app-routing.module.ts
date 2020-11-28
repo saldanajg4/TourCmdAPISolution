@@ -8,6 +8,7 @@ import { OrderDetailComponent } from './orders/shared/order-detail/order-detail.
 import { OrderAddComponent } from './orders/shared/order/order-add/order-add.component';
 import { OrderComponent } from './orders/shared/order/order.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { LoginComponent } from './security/login.component';
 import { ShowAddComponent } from './tours/shared/shows/show-add/show-add.component';
 import { TourAddComponent } from './tours/shared/tour-add/tour-add.component';
 import { TourDetailComponent } from './tours/shared/tour-detail/tour-detail.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'menu-items', component: MenuItemsComponent},
   {path: 'item-add', component: ItemAddComponent},
   {path: 'ingredients', component: IngredientComponent},
-  {path: 'pay-details', component: PaymentDetailsComponent}
+  {path: 'pay-details', component: PaymentDetailsComponent},
+  {path: 'login', component: LoginComponent},
   
 ];
 

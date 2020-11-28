@@ -20,6 +20,7 @@ export class AppComponent {
 
     ngOnInit() {
         this.items = [
+            {label: 'Login', icon: 'fa fa-fw fa-sign-in-alt', routerLink: ['/login'] },
             {label: 'Tours', icon: 'fa fa-fw fa-bar-chart',
               command: (event) =>{
               console.log(event.item.label);

@@ -52,6 +52,8 @@ import {NgReduxModule, NgRedux} from 'ng2-redux';
 import { IAppState } from './store/IAppState';
 import { store } from './store/store';
 import { PaymentDetailActions } from './payment-details/shared/payment-detail.actions';
+import { LoginComponent } from './security/login.component';
+import { SecurityService } from './security/security.service';
 
 
 @NgModule({
@@ -76,6 +78,7 @@ import { PaymentDetailActions } from './payment-details/shared/payment-detail.ac
     PaymentDetailsComponent,
     PaymentDetailComponent,
     PaymentDetailListComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -106,7 +109,7 @@ import { PaymentDetailActions } from './payment-details/shared/payment-detail.ac
   providers: [TourService,OrderService,
     TourMasterDataService, ItemService,
     IngredientService,PaymentDetailService,
-    PaymentDetailActions,
+    PaymentDetailActions, SecurityService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: EnsureAcceptHeaderInterceptor,
