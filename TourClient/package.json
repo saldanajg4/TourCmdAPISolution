@@ -33,6 +33,7 @@
     "primeng": "^10.0.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.3.7",
     "rxjs": "~6.6.3",
     "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.0",

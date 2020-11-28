@@ -1,5 +1,7 @@
+import { NgForm } from '@angular/forms';
 import {PAYMENT_DETAIL_REQUEST} from '../payment-details/shared/payment-detail.actions';
 import { IAppState } from './IAppState';
+import { PaymentDetail } from '../payment-details/shared/payment-detail.model';
 
 const paymentDetails = [];
 
@@ -15,7 +17,6 @@ function getPayDetails(state, action):IAppState{
 export function reducer(state=initialState, action){
     switch(action.type){
         case(PAYMENT_DETAIL_REQUEST):  
-            console.log('i am in the reducer function');
             console.log(JSON.stringify(action.paymentDetails));
             return getPayDetails(state, action);
         default:

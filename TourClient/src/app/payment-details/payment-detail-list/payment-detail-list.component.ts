@@ -14,6 +14,7 @@ import { PaymentDetailService } from '../shared/payment-detail.service';
 })
 export class PaymentDetailListComponent implements OnInit {
   // pdList: PaymentDetail[];
+  //subscribing to the state paymentDetails property from the store
   @select('paymentDetails') paymentDetails$: Observable<PaymentDetail>
 
   // constructor(public pdService: PaymentDetailService, private toastSvc: ToastrService) { }

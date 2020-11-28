@@ -9,21 +9,23 @@ import { PaymentDetailService } from './payment-detail.service';
 export const PAYMENT_DETAIL_REQUEST = 'pay-details/PAYMENT_DETAIL_REQUEST';
 
 @Injectable()
-export class PaymentDetailActions{
+export class PaymentDetailActions {
     constructor(private ngRedux: NgRedux<IAppState>,
         private payService: PaymentDetailService,
-        private toastrSvc: ToastrService){}
-    
-    getPaymentDetails(){
+        private toastrSvc: ToastrService) { }
+
+    getPaymentDetails() {
         this.payService.getPaymentDetails().subscribe(
             paymentDetails => {
                 this.ngRedux.dispatch({
                     type: PAYMENT_DETAIL_REQUEST,
                     paymentDetails,
                 });
-            });
+            },
+            (err) => this.toastrSvc.error('Error inserting payment details')
+        );
     }
-    insertPaymentDetail(payment: NgForm){
+    insertPaymentDetail(payment: NgForm) {
         this.payService.postPaymentDetails(payment.value).subscribe(
             payDetailInserted => {
                 this.getPaymentDetails();
@@ -34,26 +36,22 @@ export class PaymentDetailActions{
         )
     }
 
-    updatePaymentDetail(paymentDetailId:number){
+    updatePaymentDetail(paymentDetailId: number) {
         this.payService.patchPaymentDetails().subscribe(
             updatedPayment => {
                 this.getPaymentDetails();
                 this.toastrSvc.info('Payment details updated.');
             },
-            (err) => {
-                this.toastrSvc.error('Error updating record.');
-            }
+            (err) => this.toastrSvc.error('Error updating record.')  
         )
     }
-    deletePaymentDetail(paymentDetailId:number){
+    deletePaymentDetail(paymentDetailId: number) {
         this.payService.deletePaymentDetails(paymentDetailId).subscribe(
             (deletedPayment) => {
                 this.getPaymentDetails();
                 this.toastrSvc.warning('Payment details deleted.');
             },
-            (err) => {
-                this.toastrSvc.error('Error deleting record.');
-            }
+            (err) => this.toastrSvc.error('Error deleting record.')
         )
     }
 }
