@@ -5,6 +5,15 @@ export class AppUserAuth{
     canAccessPaymentDetails: boolean = false;
     canAddPaymentDetails: boolean = false;
     canUpdatePaymentDetails: boolean = false;
-    // canAccessTours: boolean = false;
-    // canAddCategory: boolean = false;
+
+    canAccessOrders: boolean = false;
+    canAddOrders: boolean = false;
+    
+    canAccessMenuItems: boolean = false;
+    canAddMenuItems: boolean = false;
+    // canAccessPaymentDetails: boolean = false;
+    // canAccessPaymentDetails: boolean = false;
+    // canAccessPaymentDetails: boolean = false;
+    // canAccessPaymentDetails: boolean = false;
+
 }

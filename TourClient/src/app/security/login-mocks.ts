@@ -7,7 +7,11 @@ export const LOGIN_MOCKS: AppUserAuth[] = [
         isAuthenticated: true,
         canAccessPaymentDetails: true,
         canAddPaymentDetails: true,
-        canUpdatePaymentDetails: false
+        canUpdatePaymentDetails: false,
+        canAccessOrders: false,
+        canAddOrders: false,
+        canAccessMenuItems: true,
+        canAddMenuItems: false
     },
     {
         userName: "prodriguez",
@@ -15,6 +19,10 @@ export const LOGIN_MOCKS: AppUserAuth[] = [
         isAuthenticated: true,
         canAccessPaymentDetails: false,
         canAddPaymentDetails: true,
-        canUpdatePaymentDetails: false
+        canUpdatePaymentDetails: false,
+        canAccessOrders: false,
+        canAddOrders: false,
+        canAccessMenuItems: true,
+        canAddMenuItems: true
     }
 ];

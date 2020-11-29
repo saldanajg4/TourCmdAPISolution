@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import {MenuItem} from 'primeng/api';
 import { Router, RouterLink } from '@angular/router';
+import { AppUserAuth } from './security/app-user-auth';
+import { SecurityService } from './security/security.service';
 
 
 @Component({
@@ -13,14 +15,15 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private router: Router) {
+  constructor(private router: Router, private securityService: SecurityService) {
+    this.securityObject = this.securityService.securityObject;
   }
   title = 'TourClient';
   items: MenuItem[];
+  securityObject: AppUserAuth = null;
 
     ngOnInit() {
         this.items = [
-            {label: 'Login', icon: 'fa fa-fw fa-sign-in-alt', routerLink: ['/login'] },
             {label: 'Tours', icon: 'fa fa-fw fa-bar-chart',
               command: (event) =>{
               console.log(event.item.label);
@@ -39,9 +42,14 @@ export class AppComponent {
             }},
             {label: 'Payment', icon: 'fa fa-fw fa-twitter', command: (event) =>{
               console.log(event);
-              this.router.navigateByUrl('/pay-details');
+              if(this.securityObject.canAccessPaymentDetails){
+                this.router.navigateByUrl('/pay-details');
+              }
+              
             }}
         ];
     }
-
+    logout(){
+      this.securityService.logout();
+    }
 }
