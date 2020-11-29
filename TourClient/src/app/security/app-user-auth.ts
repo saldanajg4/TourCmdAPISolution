@@ -5,10 +5,11 @@ export class AppUserAuth{
     canAccessPaymentDetails: boolean = false;
     canAddPaymentDetails: boolean = false;
     canUpdatePaymentDetails: boolean = false;
+    canDeletePaymentDetails: boolean = false;
 
     canAccessOrders: boolean = false;
     canAddOrders: boolean = false;
-    
+
     canAccessMenuItems: boolean = false;
     canAddMenuItems: boolean = false;
     // canAccessPaymentDetails: boolean = false;

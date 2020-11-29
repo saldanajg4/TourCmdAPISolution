@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgRedux,select } from 'ng2-redux';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { AppUserAuth } from 'src/app/security/app-user-auth';
+import { SecurityService } from 'src/app/security/security.service';
 import { IAppState } from 'src/app/store/IAppState';
 import { PaymentDetailActions } from '../shared/payment-detail.actions';
 import { PaymentDetail } from '../shared/payment-detail.model';
@@ -15,49 +17,29 @@ import { PaymentDetailService } from '../shared/payment-detail.service';
 export class PaymentDetailListComponent implements OnInit {
   // pdList: PaymentDetail[];
   //subscribing to the state paymentDetails property from the store
+  securityObject: AppUserAuth = null;
   @select('paymentDetails') paymentDetails$: Observable<PaymentDetail>
 
   // constructor(public pdService: PaymentDetailService, private toastSvc: ToastrService) { }
   constructor(private toastSvc: ToastrService, 
     private ngRedux: NgRedux<IAppState>,
     private paymentActions: PaymentDetailActions,
-    private pdService: PaymentDetailService) { }
+    private pdService: PaymentDetailService,
+    private securityService: SecurityService) { 
+      this.securityObject = this.securityService.securityObject;
+    }
 
-  //this.pdService.paymentDetailsList gets updated every time the list is updated.
-  //BehaviorSubject used as observables
   ngOnInit(): void {
-    // this.pdService.getPaymentDetails().subscribe(
-    //   (data) => {
-    //     this.pdService.updatePdDataSources(data);
-    //     this.pdService.pdData.subscribe(data => {
-    //       this.pdService.paymentDetailsList = data;
-    //     })
-    //   }
-    // )
     this.paymentActions.getPaymentDetails();
-    // componentHandler.upgradeDom();
   }
 
   onDelete(id:number){
     if (confirm('Are you sure to delete this record ?')) {
       this.paymentActions.deletePaymentDetail(id);
-    // this.pdService.deletePaymentDetails(id).subscribe(
-    //   (data) => {
-    //     this.toastSvc.warning('Record Deleted.');
-    //     this.pdService.getPaymentDetails().subscribe(data => this.pdService.paymentDetailsList = data);
-    //   },
-    //   (err) => this.toastSvc.error('Error deleting record. ' + err)
-    // )
     }
   }
   populateForm(pd: PaymentDetail){
     this.pdService.formData = Object.assign({}, pd);
-    // this.pdService.updatePdDataSource(this.pdService.formData);
-    // console.log('thisformdata: ' );
-    // console.log(this.pdService.formData);
-
-    // console.log('pdToUpdate as observable: ' );
-    // this.pdService.pdToUpdate.subscribe(data => console.log(data));
   }
 
 }
